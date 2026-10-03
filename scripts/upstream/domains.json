@@ -1,0 +1,6598 @@
+[
+  {
+    "name": "activity",
+    "specs": [
+      {
+        "contract": "activity.info",
+        "domain": "activity",
+        "accessor": "activity",
+        "method": "info",
+        "goMethod": "Info",
+        "paramType": "InfoParams",
+        "model": "activity.Info",
+        "url": "https://api.bilibili.com/x/activity/subject/info",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "sid",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "18446744073709551615"
+          },
+          {
+            "name": "bvid",
+            "type": "string",
+            "required": false,
+            "format": "bvid"
+          }
+        ],
+        "fixture": "contracts/activity/info/contract.json"
+      },
+      {
+        "contract": "activity.list",
+        "domain": "activity",
+        "accessor": "activity",
+        "method": "list",
+        "goMethod": "List",
+        "paramType": "ListParams",
+        "model": "activity.ListPage",
+        "url": "https://api.bilibili.com/x/activity/page/list",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "plat",
+            "type": "string",
+            "required": false,
+            "default": "1,3"
+          },
+          {
+            "name": "mold",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": "4294967295",
+            "default": 0
+          },
+          {
+            "name": "http",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": "4294967295",
+            "default": 3
+          },
+          {
+            "name": "pn",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "default": 1,
+            "max": "4294967295"
+          },
+          {
+            "name": "ps",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "default": 15,
+            "max": "4294967295"
+          }
+        ],
+        "fixture": "contracts/activity/list/contract.json"
+      }
+    ]
+  },
+  {
+    "name": "article",
+    "specs": [
+      {
+        "contract": "article.articles_info",
+        "domain": "article",
+        "accessor": "article",
+        "method": "articles",
+        "goMethod": "Articles",
+        "paramType": "ArticlesInfoParams",
+        "model": "article.Articles",
+        "url": "https://api.bilibili.com/x/article/list/web/articles",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "id",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "18446744073709551615"
+          }
+        ],
+        "fixture": "contracts/article/articles/contract.json"
+      },
+      {
+        "contract": "article.cards",
+        "domain": "article",
+        "accessor": "article",
+        "method": "cards",
+        "goMethod": "Cards",
+        "paramType": "CardsParams",
+        "model": "article.CardData",
+        "url": "https://api.bilibili.com/x/article/cards",
+        "httpMethod": "GET",
+        "wbi": true,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "ids",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "web_location",
+            "type": "string",
+            "required": false,
+            "default": "333.1305"
+          }
+        ],
+        "fixture": "contracts/article/cards/contract.json"
+      },
+      {
+        "contract": "article.info",
+        "domain": "article",
+        "accessor": "article",
+        "method": "info",
+        "goMethod": "Info",
+        "paramType": "InfoParams",
+        "model": "article.Info",
+        "url": "https://api.bilibili.com/x/article/viewinfo",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "id",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/article/info/contract.json"
+      },
+      {
+        "contract": "article.view",
+        "domain": "article",
+        "accessor": "article",
+        "method": "view",
+        "goMethod": "View",
+        "paramType": "ViewParams",
+        "model": "article.View",
+        "url": "https://api.bilibili.com/x/article/view",
+        "httpMethod": "GET",
+        "wbi": true,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "id",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "gaia_source",
+            "type": "string",
+            "required": false,
+            "default": "main_web"
+          }
+        ],
+        "fixture": "contracts/article/view/contract.json"
+      }
+    ]
+  },
+  {
+    "name": "audio",
+    "specs": [
+      {
+        "contract": "audio.coin_count",
+        "domain": "audio",
+        "accessor": "audio",
+        "method": "coinCount",
+        "goMethod": "CoinCount",
+        "paramType": "SongParams",
+        "model": "int32",
+        "url": "https://www.bilibili.com/audio/music-service-c/web/coin/audio",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "sid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/audio/coin-count/contract.json"
+      },
+      {
+        "contract": "audio.collection_info",
+        "domain": "audio",
+        "accessor": "audio",
+        "method": "collectionInfo",
+        "goMethod": "CollectionInfo",
+        "paramType": "CollectionInfoParams",
+        "model": "*audio.Collection",
+        "url": "https://www.bilibili.com/audio/music-service-c/web/collections/info",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "sid",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "18446744073709551615"
+          }
+        ],
+        "fixture": "contracts/audio/collection-info/contract.json"
+      },
+      {
+        "contract": "audio.collection_status",
+        "domain": "audio",
+        "accessor": "audio",
+        "method": "collectionStatus",
+        "goMethod": "CollectionStatus",
+        "paramType": "SongParams",
+        "model": "bool",
+        "url": "https://www.bilibili.com/audio/music-service-c/web/collections/songs-coll",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "sid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/audio/collection-status/contract.json"
+      },
+      {
+        "contract": "audio.collections_list",
+        "domain": "audio",
+        "accessor": "audio",
+        "method": "collectionsList",
+        "goMethod": "CollectionsList",
+        "paramType": "PageParams",
+        "model": "audio.Page[audio.Collection]",
+        "url": "https://www.bilibili.com/audio/music-service-c/web/collections/list",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "pn",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "4294967295"
+          },
+          {
+            "name": "ps",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "4294967295"
+          }
+        ],
+        "fixture": "contracts/audio/collections-list/contract.json"
+      },
+      {
+        "contract": "audio.hot_menu",
+        "domain": "audio",
+        "accessor": "audio",
+        "method": "hotMenu",
+        "goMethod": "HotMenu",
+        "paramType": "PageParams",
+        "model": "audio.Page[audio.HotMenu]",
+        "url": "https://www.bilibili.com/audio/music-service-c/web/menu/hit",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "pn",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "4294967295"
+          },
+          {
+            "name": "ps",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "4294967295"
+          }
+        ],
+        "fixture": "contracts/audio/hot-menu/contract.json"
+      },
+      {
+        "contract": "audio.info",
+        "domain": "audio",
+        "accessor": "audio",
+        "method": "info",
+        "goMethod": "Info",
+        "paramType": "SongParams",
+        "model": "audio.Info",
+        "url": "https://www.bilibili.com/audio/music-service-c/web/song/info",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "sid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/audio/info/contract.json"
+      },
+      {
+        "contract": "audio.lyric",
+        "domain": "audio",
+        "accessor": "audio",
+        "method": "lyric",
+        "goMethod": "Lyric",
+        "paramType": "SongParams",
+        "model": "string",
+        "url": "https://www.bilibili.com/audio/music-service-c/web/song/lyric",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "sid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/audio/lyric/contract.json"
+      },
+      {
+        "contract": "audio.members",
+        "domain": "audio",
+        "accessor": "audio",
+        "method": "members",
+        "goMethod": "Members",
+        "paramType": "SongParams",
+        "model": "[]audio.MemberGroup",
+        "url": "https://www.bilibili.com/audio/music-service-c/web/member/song",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "sid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/audio/members/contract.json"
+      },
+      {
+        "contract": "audio.rank_detail",
+        "domain": "audio",
+        "accessor": "audio",
+        "method": "rankDetail",
+        "goMethod": "RankDetail",
+        "paramType": "RankListParams",
+        "model": "audio.RankDetail",
+        "url": "https://api.bilibili.com/x/copyright-music-publicity/toplist/detail",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "list_id",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "18446744073709551615"
+          }
+        ],
+        "fixture": "contracts/audio/rank-detail/contract.json",
+        "csrf": "optional"
+      },
+      {
+        "contract": "audio.rank_menu",
+        "domain": "audio",
+        "accessor": "audio",
+        "method": "rankMenu",
+        "goMethod": "RankMenu",
+        "paramType": "PageParams",
+        "model": "audio.Page[audio.RankMenu]",
+        "url": "https://www.bilibili.com/audio/music-service-c/web/menu/rank",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "pn",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "4294967295"
+          },
+          {
+            "name": "ps",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "4294967295"
+          }
+        ],
+        "fixture": "contracts/audio/rank-menu/contract.json"
+      },
+      {
+        "contract": "audio.rank_music_list",
+        "domain": "audio",
+        "accessor": "audio",
+        "method": "rankMusicList",
+        "goMethod": "RankMusicList",
+        "paramType": "RankListParams",
+        "model": "audio.RankMusicList",
+        "url": "https://api.bilibili.com/x/copyright-music-publicity/toplist/music_list",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "list_id",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "18446744073709551615"
+          }
+        ],
+        "fixture": "contracts/audio/rank-music-list/contract.json",
+        "csrf": "optional"
+      },
+      {
+        "contract": "audio.rank_period",
+        "domain": "audio",
+        "accessor": "audio",
+        "method": "rankPeriod",
+        "goMethod": "RankPeriod",
+        "paramType": "RankPeriodParams",
+        "model": "audio.RankPeriods",
+        "url": "https://api.bilibili.com/x/copyright-music-publicity/toplist/all_period",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "list_type",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "4294967295"
+          }
+        ],
+        "fixture": "contracts/audio/rank-period/contract.json",
+        "csrf": "optional"
+      },
+      {
+        "contract": "audio.status_number",
+        "domain": "audio",
+        "accessor": "audio",
+        "method": "statusNumber",
+        "goMethod": "StatusNumber",
+        "paramType": "SongParams",
+        "model": "audio.StatusNumber",
+        "url": "https://www.bilibili.com/audio/music-service-c/web/stat/song",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "sid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/audio/status-number/contract.json"
+      },
+      {
+        "contract": "audio.stream_url",
+        "domain": "audio",
+        "accessor": "audio",
+        "method": "streamURL",
+        "goMethod": "StreamURL",
+        "paramType": "StreamURLParams",
+        "model": "audio.StreamURL",
+        "url": "https://api.bilibili.com/audio/music-service-c/url",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "songid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "quality",
+            "type": "integer",
+            "required": true,
+            "min": 0,
+            "max": 3
+          },
+          {
+            "name": "privilege",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295",
+            "default": 2
+          },
+          {
+            "name": "mid",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "18446744073709551615",
+            "default": 2
+          },
+          {
+            "name": "platform",
+            "type": "string",
+            "required": false,
+            "default": "android"
+          }
+        ],
+        "fixture": "contracts/audio/stream-url/contract.json"
+      },
+      {
+        "contract": "audio.stream_url_web",
+        "domain": "audio",
+        "accessor": "audio",
+        "method": "streamURLWeb",
+        "goMethod": "StreamURLWeb",
+        "paramType": "StreamURLWebParams",
+        "model": "audio.StreamURLWeb",
+        "url": "https://www.bilibili.com/audio/music-service-c/web/url",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "sid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "quality",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": 3,
+            "default": 2
+          },
+          {
+            "name": "privilege",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295",
+            "default": 2
+          }
+        ],
+        "fixture": "contracts/audio/stream-url-web/contract.json"
+      },
+      {
+        "contract": "audio.tags",
+        "domain": "audio",
+        "accessor": "audio",
+        "method": "tags",
+        "goMethod": "Tags",
+        "paramType": "SongParams",
+        "model": "[]audio.Tag",
+        "url": "https://www.bilibili.com/audio/music-service-c/web/tag/song",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "sid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/audio/tags/contract.json"
+      }
+    ]
+  },
+  {
+    "name": "bangumi",
+    "specs": [
+      {
+        "contract": "bangumi.info.review_user",
+        "domain": "bangumi",
+        "accessor": "bangumi",
+        "method": "review",
+        "goMethod": "Review",
+        "paramType": "InfoParams",
+        "model": "bangumi.Info",
+        "url": "https://api.bilibili.com/pgc/review/user",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "media_id",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/bangumi/info/review-user/contract.json"
+      },
+      {
+        "contract": "bangumi.info.season_detail_by_ep_id",
+        "domain": "bangumi",
+        "accessor": "bangumi",
+        "method": "episodeDetail",
+        "goMethod": "EpisodeDetail",
+        "paramType": "EpisodeID",
+        "model": "bangumi.Detail",
+        "url": "https://api.bilibili.com/pgc/view/web/season",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "ep_id",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/bangumi/info/season-detail-episode/contract.json"
+      },
+      {
+        "contract": "bangumi.info.season_detail_by_season_id",
+        "domain": "bangumi",
+        "accessor": "bangumi",
+        "method": "seasonDetail",
+        "goMethod": "SeasonDetail",
+        "paramType": "SeasonID",
+        "model": "bangumi.Detail",
+        "url": "https://api.bilibili.com/pgc/view/web/season",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "season_id",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/bangumi/info/season-detail-season/contract.json"
+      },
+      {
+        "contract": "bangumi.info.season_section",
+        "domain": "bangumi",
+        "accessor": "bangumi",
+        "method": "sections",
+        "goMethod": "Sections",
+        "paramType": "SectionsParams",
+        "model": "bangumi.Sections",
+        "url": "https://api.bilibili.com/pgc/web/season/section",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "season_id",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/bangumi/info/season-section/contract.json"
+      },
+      {
+        "contract": "bangumi.playurl",
+        "domain": "bangumi",
+        "accessor": "bangumi",
+        "method": "playURL",
+        "goMethod": "PlayURL",
+        "paramType": "PlayURLParams",
+        "model": "bangumi.PlayURL",
+        "url": "https://api.bilibili.com/pgc/player/web/playurl",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "fnver",
+            "type": "integer",
+            "required": false,
+            "default": 0,
+            "fixed": true
+          },
+          {
+            "name": "ep_id",
+            "type": "integer",
+            "required": false,
+            "min": 1
+          },
+          {
+            "name": "cid",
+            "type": "integer",
+            "required": false,
+            "min": 1
+          },
+          {
+            "name": "qn",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "18446744073709551615"
+          },
+          {
+            "name": "fnval",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "18446744073709551615"
+          },
+          {
+            "name": "fourk",
+            "type": "boolean",
+            "required": false
+          }
+        ],
+        "fixture": "contracts/bangumi/playurl/contract.json",
+        "oneOf": [
+          "ep_id",
+          "cid"
+        ],
+        "deriveFourK": true
+      },
+      {
+        "contract": "bangumi.timeline",
+        "domain": "bangumi",
+        "accessor": "bangumi",
+        "method": "timeline",
+        "goMethod": "Timeline",
+        "paramType": "TimelineParams",
+        "model": "[]bangumi.TimelineDay",
+        "url": "https://api.bilibili.com/pgc/web/timeline",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "types",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": 5,
+            "default": 1,
+            "enum": [
+              1,
+              3,
+              4
+            ]
+          },
+          {
+            "name": "before",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": 7,
+            "default": 6
+          },
+          {
+            "name": "after",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": 7,
+            "default": 6
+          }
+        ],
+        "fixture": "contracts/bangumi/timeline/contract.json"
+      }
+    ]
+  },
+  {
+    "name": "cheese",
+    "specs": [
+      {
+        "contract": "cheese.info.ep_list",
+        "domain": "cheese",
+        "accessor": "cheese",
+        "method": "episodeList",
+        "goMethod": "EpisodeList",
+        "paramType": "EpisodeListParams",
+        "model": "cheese.EpisodeList",
+        "url": "https://api.bilibili.com/pugv/view/web/ep/list",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "season_id",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "ps",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295"
+          },
+          {
+            "name": "pn",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295"
+          }
+        ],
+        "fixture": "contracts/cheese/info/ep-list/contract.json"
+      },
+      {
+        "contract": "cheese.info.season_detail_by_ep_id",
+        "domain": "cheese",
+        "accessor": "cheese",
+        "method": "episodeDetail",
+        "goMethod": "EpisodeDetail",
+        "paramType": "EpisodeID",
+        "model": "cheese.Course",
+        "url": "https://api.bilibili.com/pugv/view/web/season",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "ep_id",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/cheese/info/season-detail-episode/contract.json"
+      },
+      {
+        "contract": "cheese.info.season_detail_by_season_id",
+        "domain": "cheese",
+        "accessor": "cheese",
+        "method": "seasonDetail",
+        "goMethod": "SeasonDetail",
+        "paramType": "SeasonID",
+        "model": "cheese.Course",
+        "url": "https://api.bilibili.com/pugv/view/web/season",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "season_id",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/cheese/info/season-detail-season/contract.json"
+      },
+      {
+        "contract": "cheese.playurl",
+        "domain": "cheese",
+        "accessor": "cheese",
+        "method": "playURL",
+        "goMethod": "PlayURL",
+        "paramType": "PlayURLParams",
+        "model": "cheese.PlayURL",
+        "url": "https://api.bilibili.com/pugv/player/web/playurl",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "avid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "ep_id",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "cid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "fnver",
+            "type": "string",
+            "required": false,
+            "default": 0,
+            "fixed": true
+          },
+          {
+            "name": "qn",
+            "type": "integer",
+            "required": false,
+            "min": 1
+          },
+          {
+            "name": "fnval",
+            "type": "integer",
+            "required": false,
+            "min": 1
+          },
+          {
+            "name": "fourk",
+            "type": "boolean",
+            "required": false
+          }
+        ],
+        "fixture": "contracts/cheese/playurl/contract.json",
+        "deriveFourK": true
+      }
+    ]
+  },
+  {
+    "name": "clientinfo",
+    "specs": [
+      {
+        "contract": "clientinfo.ip",
+        "domain": "clientinfo",
+        "accessor": "clientInfo",
+        "method": "ip",
+        "goMethod": "IP",
+        "paramType": "IPParams",
+        "model": "clientinfo.IPInfo",
+        "url": "https://api.live.bilibili.com/ip_service/v1/ip_service/get_ip_addr",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "ip",
+            "type": "string",
+            "required": false,
+            "min": 1,
+            "format": "ip"
+          }
+        ],
+        "fixture": "contracts/clientinfo/ip/contract.json"
+      }
+    ]
+  },
+  {
+    "name": "comment",
+    "specs": [
+      {
+        "contract": "comment.read.count",
+        "domain": "comment",
+        "accessor": "comment",
+        "method": "count",
+        "goMethod": "Count",
+        "paramType": "CountParams",
+        "model": "comment.Count",
+        "url": "https://api.bilibili.com/x/v2/reply/count",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "type",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "2147483647"
+          },
+          {
+            "name": "oid",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "9223372036854775807"
+          }
+        ],
+        "fixture": "contracts/comment/read/count/contract.json"
+      },
+      {
+        "contract": "comment.read.hot",
+        "domain": "comment",
+        "accessor": "comment",
+        "method": "hot",
+        "goMethod": "Hot",
+        "paramType": "HotParams",
+        "model": "*comment.Hot",
+        "url": "https://api.bilibili.com/x/v2/reply/hot",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "optional",
+        "fields": [
+          {
+            "name": "type",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "2147483647"
+          },
+          {
+            "name": "oid",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "9223372036854775807"
+          },
+          {
+            "name": "root",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "9223372036854775807"
+          },
+          {
+            "name": "pn",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295"
+          },
+          {
+            "name": "ps",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295"
+          }
+        ],
+        "fixture": "contracts/comment/read/hot/contract.json"
+      },
+      {
+        "contract": "comment.read.list",
+        "domain": "comment",
+        "accessor": "comment",
+        "method": "list",
+        "goMethod": "List",
+        "paramType": "ListParams",
+        "model": "comment.List",
+        "url": "https://api.bilibili.com/x/v2/reply",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "type",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "2147483647"
+          },
+          {
+            "name": "oid",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "9223372036854775807"
+          },
+          {
+            "name": "pn",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295"
+          },
+          {
+            "name": "ps",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": 20
+          },
+          {
+            "name": "sort",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": 2
+          },
+          {
+            "name": "nohot",
+            "type": "boolean",
+            "required": false
+          }
+        ],
+        "fixture": "contracts/comment/read/list/contract.json"
+      },
+      {
+        "contract": "comment.read.replies",
+        "domain": "comment",
+        "accessor": "comment",
+        "method": "replies",
+        "goMethod": "Replies",
+        "paramType": "RepliesParams",
+        "model": "comment.List",
+        "url": "https://api.bilibili.com/x/v2/reply/reply",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "type",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "2147483647"
+          },
+          {
+            "name": "oid",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "9223372036854775807"
+          },
+          {
+            "name": "root",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "9223372036854775807"
+          },
+          {
+            "name": "pn",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295"
+          },
+          {
+            "name": "ps",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295"
+          }
+        ],
+        "fixture": "contracts/comment/read/replies/contract.json"
+      }
+    ]
+  },
+  {
+    "name": "creativecenter",
+    "specs": [
+      {
+        "contract": "creativecenter.railgun.electromagnetic_info",
+        "domain": "creativecenter",
+        "accessor": "creativeCenter",
+        "method": "electromagneticInfo",
+        "goMethod": "ElectromagneticInfo",
+        "model": "creativecenter.ElectromagneticInfo",
+        "url": "https://api.bilibili.com/studio/up-rating/v3/rating/info",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [],
+        "fixture": "contracts/creativecenter/railgun-read/electromagnetic-info/contract.json"
+      },
+      {
+        "contract": "creativecenter.season.aid",
+        "domain": "creativecenter",
+        "accessor": "creativeCenter",
+        "method": "seasonByAID",
+        "goMethod": "SeasonByAID",
+        "paramType": "SeasonByAIDParams",
+        "model": "creativecenter.Season",
+        "url": "https://member.bilibili.com/x2/creative/web/season/aid",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "id",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/creativecenter/season/aid/contract.json"
+      },
+      {
+        "contract": "creativecenter.season.info",
+        "domain": "creativecenter",
+        "accessor": "creativeCenter",
+        "method": "seasonInfo",
+        "goMethod": "SeasonInfo",
+        "paramType": "SeasonInfoParams",
+        "model": "creativecenter.SeasonInfo",
+        "url": "https://member.bilibili.com/x2/creative/web/season",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "id",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/creativecenter/season/info/contract.json"
+      },
+      {
+        "contract": "creativecenter.season.list",
+        "domain": "creativecenter",
+        "accessor": "creativeCenter",
+        "method": "seasonList",
+        "goMethod": "SeasonList",
+        "paramType": "SeasonListParams",
+        "model": "creativecenter.SeasonList",
+        "url": "https://member.bilibili.com/x2/creative/web/seasons",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "pn",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "ps",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "order",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "sort",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "fixture": "contracts/creativecenter/season/list/contract.json"
+      },
+      {
+        "contract": "creativecenter.season.section",
+        "domain": "creativecenter",
+        "accessor": "creativeCenter",
+        "method": "seasonSection",
+        "goMethod": "SeasonSection",
+        "paramType": "SectionParams",
+        "model": "creativecenter.SectionEpisodes",
+        "url": "https://member.bilibili.com/x2/creative/web/season/section",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "id",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/creativecenter/season/section/contract.json"
+      },
+      {
+        "contract": "creativecenter.statistics.archive_compare",
+        "domain": "creativecenter",
+        "accessor": "creativeCenter",
+        "method": "archiveCompare",
+        "goMethod": "ArchiveCompare",
+        "paramType": "ArchiveCompareParams",
+        "model": "creativecenter.ArchiveCompare",
+        "url": "https://member.bilibili.com/x/web/data/archive_diagnose/compare",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "t",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "18446744073709551615"
+          },
+          {
+            "name": "size",
+            "type": "integer",
+            "required": false,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/creativecenter/statistics/archive-compare/contract.json"
+      },
+      {
+        "contract": "creativecenter.statistics.article_stat",
+        "domain": "creativecenter",
+        "accessor": "creativeCenter",
+        "method": "articleStat",
+        "goMethod": "ArticleStat",
+        "model": "creativecenter.ArticleStat",
+        "url": "https://member.bilibili.com/x/web/data/article",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [],
+        "fixture": "contracts/creativecenter/statistics/article-stat/contract.json"
+      },
+      {
+        "contract": "creativecenter.statistics.article_trend",
+        "domain": "creativecenter",
+        "accessor": "creativeCenter",
+        "method": "articleTrend",
+        "goMethod": "ArticleTrend",
+        "paramType": "ArticleTrendParams",
+        "model": "[]creativecenter.Trend",
+        "url": "https://member.bilibili.com/x/web/data/article/thirty",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "type",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": 6
+          }
+        ],
+        "fixture": "contracts/creativecenter/statistics/article-trend/contract.json"
+      },
+      {
+        "contract": "creativecenter.statistics.play_source",
+        "domain": "creativecenter",
+        "accessor": "creativeCenter",
+        "method": "playSource",
+        "goMethod": "PlaySource",
+        "model": "*creativecenter.PlaySource",
+        "url": "https://member.bilibili.com/x/web/data/playsource",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [],
+        "fixture": "contracts/creativecenter/statistics/play-source/contract.json"
+      },
+      {
+        "contract": "creativecenter.statistics.up_stat",
+        "domain": "creativecenter",
+        "accessor": "creativeCenter",
+        "method": "upStat",
+        "goMethod": "UpStat",
+        "model": "creativecenter.UpStat",
+        "url": "https://member.bilibili.com/x/web/index/stat",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [],
+        "fixture": "contracts/creativecenter/statistics/up-stat/contract.json"
+      },
+      {
+        "contract": "creativecenter.statistics.video_trend",
+        "domain": "creativecenter",
+        "accessor": "creativeCenter",
+        "method": "videoTrend",
+        "goMethod": "VideoTrend",
+        "paramType": "VideoTrendParams",
+        "model": "[]creativecenter.Trend",
+        "url": "https://member.bilibili.com/x/web/data/pandect",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "type",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": 8
+          }
+        ],
+        "fixture": "contracts/creativecenter/statistics/video-trend/contract.json"
+      },
+      {
+        "contract": "creativecenter.statistics.viewer_data",
+        "domain": "creativecenter",
+        "accessor": "creativeCenter",
+        "method": "viewerData",
+        "goMethod": "ViewerData",
+        "model": "creativecenter.ViewerData",
+        "url": "https://member.bilibili.com/x/web/data/base",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [],
+        "fixture": "contracts/creativecenter/statistics/viewer-data/contract.json"
+      },
+      {
+        "contract": "creativecenter.videos.archive_videos",
+        "domain": "creativecenter",
+        "accessor": "creativeCenter",
+        "method": "archiveVideos",
+        "goMethod": "ArchiveVideos",
+        "paramType": "ArchiveVideosParams",
+        "model": "creativecenter.ArchiveVideos",
+        "url": "https://member.bilibili.com/x/web/archive/videos",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "aid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/creativecenter/videos/archive-videos/contract.json"
+      },
+      {
+        "contract": "creativecenter.videos.archives_list",
+        "domain": "creativecenter",
+        "accessor": "creativeCenter",
+        "method": "archivesList",
+        "goMethod": "ArchivesList",
+        "paramType": "ArchivesListParams",
+        "model": "creativecenter.ArchivesList",
+        "url": "https://member.bilibili.com/x2/creative/web/archives/sp",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "pn",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "ps",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/creativecenter/videos/archives-list/contract.json"
+      }
+    ]
+  },
+  {
+    "name": "danmaku",
+    "specs": [
+      {
+        "contract": "danmaku.adv.state",
+        "domain": "danmaku",
+        "accessor": "danmaku",
+        "method": "advState",
+        "goMethod": "AdvState",
+        "paramType": "AdvStateParams",
+        "model": "danmaku.AdvState",
+        "url": "https://api.bilibili.com/x/dm/adv/state",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "cid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "mode",
+            "type": "string",
+            "required": false,
+            "default": "sp",
+            "fixed": true
+          }
+        ],
+        "fixture": "contracts/danmaku/json-read/adv-state/contract.json"
+      },
+      {
+        "contract": "danmaku.history.dates",
+        "domain": "danmaku",
+        "accessor": "danmaku",
+        "method": "historyDates",
+        "goMethod": "HistoryDates",
+        "paramType": "HistoryDatesParams",
+        "model": "[]string",
+        "url": "https://api.bilibili.com/x/v2/dm/history/index",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "optional",
+        "fields": [
+          {
+            "name": "type",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": 255,
+            "default": 1
+          },
+          {
+            "name": "oid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "month",
+            "type": "string",
+            "required": true,
+            "format": "month"
+          }
+        ],
+        "fixture": "contracts/danmaku/json-read/history-dates/contract.json"
+      },
+      {
+        "contract": "danmaku.history.xml",
+        "domain": "danmaku",
+        "accessor": "danmaku",
+        "method": "historyXMLBytes",
+        "goMethod": "HistoryXMLBytes",
+        "paramType": "HistoryBytesParams",
+        "model": "[]byte",
+        "url": "https://api.bilibili.com/x/v2/dm/history",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "raw",
+        "fields": [
+          {
+            "name": "type",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": 255
+          },
+          {
+            "name": "oid",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "18446744073709551615"
+          },
+          {
+            "name": "date",
+            "type": "string",
+            "required": true,
+            "format": "date"
+          }
+        ],
+        "fixture": "contracts/danmaku/history-xml/contract.json"
+      },
+      {
+        "contract": "danmaku.mobile.seg",
+        "domain": "danmaku",
+        "accessor": "danmaku",
+        "method": "mobileSegment",
+        "goMethod": "MobileSegment",
+        "paramType": "SegmentParams",
+        "model": "[]byte",
+        "url": "https://api.bilibili.com/x/v2/dm/list/seg.so",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "raw",
+        "fields": [
+          {
+            "name": "type",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": 255
+          },
+          {
+            "name": "oid",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "18446744073709551615"
+          },
+          {
+            "name": "segment_index",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "4294967295"
+          },
+          {
+            "name": "pid",
+            "type": "integer",
+            "required": false,
+            "min": 1
+          },
+          {
+            "name": "pull_mode",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": "4294967295"
+          },
+          {
+            "name": "ps",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": "4294967295"
+          },
+          {
+            "name": "pe",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": "4294967295"
+          }
+        ],
+        "fixture": "contracts/danmaku/non-json-read/mobile-seg/contract.json"
+      },
+      {
+        "contract": "danmaku.snapshot",
+        "domain": "danmaku",
+        "accessor": "danmaku",
+        "method": "snapshot",
+        "goMethod": "Snapshot",
+        "paramType": "SnapshotParams",
+        "model": "[]string",
+        "url": "https://api.bilibili.com/x/v2/dm/ajax",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "aid",
+            "type": "string",
+            "required": true,
+            "min": 1,
+            "format": "bvid"
+          }
+        ],
+        "fixture": "contracts/danmaku/json-read/snapshot/contract.json"
+      },
+      {
+        "contract": "danmaku.thumbup.stats",
+        "domain": "danmaku",
+        "accessor": "danmaku",
+        "method": "thumbupStats",
+        "goMethod": "ThumbupStats",
+        "paramType": "ThumbupStatsParams",
+        "model": "danmaku.ThumbupStats",
+        "url": "https://api.bilibili.com/x/v2/dm/thumbup/stats",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "oid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "ids",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "fixture": "contracts/danmaku/json-read/thumbup-stats/contract.json"
+      },
+      {
+        "contract": "danmaku.web.history_seg",
+        "domain": "danmaku",
+        "accessor": "danmaku",
+        "method": "webHistorySegment",
+        "goMethod": "WebHistorySegment",
+        "paramType": "HistoryBytesParams",
+        "model": "[]byte",
+        "url": "https://api.bilibili.com/x/v2/dm/web/history/seg.so",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "raw",
+        "fields": [
+          {
+            "name": "type",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": 255
+          },
+          {
+            "name": "oid",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "18446744073709551615"
+          },
+          {
+            "name": "date",
+            "type": "string",
+            "required": true,
+            "format": "date"
+          }
+        ],
+        "fixture": "contracts/danmaku/non-json-read/web-history-seg/contract.json"
+      },
+      {
+        "contract": "danmaku.web.seg",
+        "domain": "danmaku",
+        "accessor": "danmaku",
+        "method": "webSegment",
+        "goMethod": "WebSegment",
+        "paramType": "SegmentParams",
+        "model": "[]byte",
+        "url": "https://api.bilibili.com/x/v2/dm/web/seg.so",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "raw",
+        "fields": [
+          {
+            "name": "type",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": 255
+          },
+          {
+            "name": "oid",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "18446744073709551615"
+          },
+          {
+            "name": "segment_index",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "4294967295"
+          },
+          {
+            "name": "pid",
+            "type": "integer",
+            "required": false,
+            "min": 1
+          },
+          {
+            "name": "pull_mode",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": "4294967295"
+          },
+          {
+            "name": "ps",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": "4294967295"
+          },
+          {
+            "name": "pe",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": "4294967295"
+          }
+        ],
+        "fixture": "contracts/danmaku/non-json-read/web-seg/contract.json"
+      },
+      {
+        "contract": "danmaku.web.seg_wbi",
+        "domain": "danmaku",
+        "accessor": "danmaku",
+        "method": "webSegmentWBI",
+        "goMethod": "WebSegmentWBI",
+        "paramType": "SegmentParams",
+        "model": "[]byte",
+        "url": "https://api.bilibili.com/x/v2/dm/wbi/web/seg.so",
+        "httpMethod": "GET",
+        "wbi": true,
+        "mode": "raw",
+        "fields": [
+          {
+            "name": "type",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": 255
+          },
+          {
+            "name": "oid",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "18446744073709551615"
+          },
+          {
+            "name": "segment_index",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "4294967295"
+          },
+          {
+            "name": "pid",
+            "type": "integer",
+            "required": false,
+            "min": 1
+          },
+          {
+            "name": "pull_mode",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": "4294967295"
+          },
+          {
+            "name": "ps",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": "4294967295"
+          },
+          {
+            "name": "pe",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": "4294967295"
+          }
+        ],
+        "fixture": "contracts/danmaku/non-json-read/web-seg-wbi/contract.json"
+      },
+      {
+        "contract": "danmaku.web.view",
+        "domain": "danmaku",
+        "accessor": "danmaku",
+        "method": "webView",
+        "goMethod": "WebView",
+        "paramType": "WebViewParams",
+        "model": "[]byte",
+        "url": "https://api.bilibili.com/x/v2/dm/web/view",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "raw",
+        "fields": [
+          {
+            "name": "type",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": 255
+          },
+          {
+            "name": "oid",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "18446744073709551615"
+          },
+          {
+            "name": "pid",
+            "type": "integer",
+            "required": false,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/danmaku/non-json-read/web-view/contract.json"
+      },
+      {
+        "contract": "danmaku.xml.comment_xml",
+        "domain": "danmaku",
+        "accessor": "danmaku",
+        "method": "xmlList",
+        "goMethod": "XMLList",
+        "paramType": "XMLListParams",
+        "model": "danmaku.XML",
+        "url": "https://comment.bilibili.com/16546.xml",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "xml",
+        "fields": [
+          {
+            "name": "oid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/danmaku/xml-read/comment-xml/contract.json",
+        "pathID": "oid"
+      },
+      {
+        "contract": "danmaku.xml.list_so",
+        "domain": "danmaku",
+        "accessor": "danmaku",
+        "method": "xmlListSO",
+        "goMethod": "XMLListSO",
+        "paramType": "XMLListParams",
+        "model": "danmaku.XML",
+        "url": "https://api.bilibili.com/x/v1/dm/list.so",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "xml",
+        "fields": [
+          {
+            "name": "oid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/danmaku/xml-read/list-so/contract.json"
+      }
+    ]
+  },
+  {
+    "name": "dynamic",
+    "specs": [
+      {
+        "contract": "dynamic.detail",
+        "domain": "dynamic",
+        "accessor": "dynamic",
+        "method": "detail",
+        "goMethod": "Detail",
+        "paramType": "DetailParams",
+        "model": "dynamic.Detail",
+        "url": "https://api.bilibili.com/x/polymer/web-dynamic/v1/detail",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "id",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "features",
+            "type": "string",
+            "required": false,
+            "default": "htmlNewStyle,itemOpusStyle,decorationCard"
+          }
+        ],
+        "fixture": "contracts/dynamic/detail/detail/contract.json"
+      },
+      {
+        "contract": "dynamic.detail_forward",
+        "domain": "dynamic",
+        "accessor": "dynamic",
+        "method": "forwards",
+        "goMethod": "Forwards",
+        "paramType": "OffsetParams",
+        "model": "dynamic.Forwards",
+        "url": "https://api.bilibili.com/x/polymer/web-dynamic/v1/detail/forward",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "id",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "offset",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "fixture": "contracts/dynamic/detail/forwards/contract.json"
+      },
+      {
+        "contract": "dynamic.detail_forward_item",
+        "domain": "dynamic",
+        "accessor": "dynamic",
+        "method": "forwardItem",
+        "goMethod": "ForwardItem",
+        "paramType": "ItemParams",
+        "model": "dynamic.ForwardInfo",
+        "url": "https://api.bilibili.com/x/polymer/web-dynamic/v1/detail/forward/item",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "id",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/dynamic/detail/forward-item/contract.json"
+      },
+      {
+        "contract": "dynamic.detail_pic",
+        "domain": "dynamic",
+        "accessor": "dynamic",
+        "method": "pictures",
+        "goMethod": "Pictures",
+        "paramType": "ItemParams",
+        "model": "[]dynamic.Picture",
+        "url": "https://api.bilibili.com/x/polymer/web-dynamic/v1/detail/pic",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "id",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/dynamic/detail/pics/contract.json"
+      },
+      {
+        "contract": "dynamic.detail_reaction",
+        "domain": "dynamic",
+        "accessor": "dynamic",
+        "method": "reactions",
+        "goMethod": "Reactions",
+        "paramType": "OffsetParams",
+        "model": "dynamic.Reactions",
+        "url": "https://api.bilibili.com/x/polymer/web-dynamic/v1/detail/reaction",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "id",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "offset",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "fixture": "contracts/dynamic/detail/reactions/contract.json"
+      },
+      {
+        "contract": "dynamic.feed_all",
+        "domain": "dynamic",
+        "accessor": "dynamic",
+        "method": "all",
+        "goMethod": "All",
+        "paramType": "AllParams",
+        "model": "dynamic.Feed",
+        "url": "https://api.bilibili.com/x/polymer/web-dynamic/v1/feed/all",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "features",
+            "type": "string",
+            "required": false,
+            "default": "itemOpusStyle,listOnlyfans,opusBigCover,onlyfansVote,decorationCard,onlyfansAssetsV2,forwardListHidden,ugcDelete"
+          },
+          {
+            "name": "web_location",
+            "type": "string",
+            "required": false,
+            "default": "333.1365"
+          },
+          {
+            "name": "host_mid",
+            "type": "integer",
+            "required": false,
+            "min": 1
+          },
+          {
+            "name": "offset",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "update_baseline",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "fixture": "contracts/dynamic/feed/all/contract.json"
+      },
+      {
+        "contract": "dynamic.feed_all_update",
+        "domain": "dynamic",
+        "accessor": "dynamic",
+        "method": "checkNew",
+        "goMethod": "CheckNew",
+        "paramType": "CheckNewParams",
+        "model": "dynamic.Update",
+        "url": "https://api.bilibili.com/x/polymer/web-dynamic/v1/feed/all/update",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "update_baseline",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "type",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "fixture": "contracts/dynamic/feed/check-new/contract.json"
+      },
+      {
+        "contract": "dynamic.feed_banner",
+        "domain": "dynamic",
+        "accessor": "dynamic",
+        "method": "feedBanner",
+        "goMethod": "FeedBanner",
+        "model": "dynamic.BannerFeed",
+        "url": "https://api.bilibili.com/x/dynamic/feed/dyn/banner",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "platform",
+            "type": "string",
+            "required": false,
+            "default": "1"
+          },
+          {
+            "name": "position",
+            "type": "string",
+            "required": false,
+            "default": "web动态"
+          },
+          {
+            "name": "web_location",
+            "type": "string",
+            "required": false,
+            "default": "333.1365"
+          }
+        ],
+        "fixture": "contracts/dynamic/feed/banner/contract.json"
+      },
+      {
+        "contract": "dynamic.feed_nav",
+        "domain": "dynamic",
+        "accessor": "dynamic",
+        "method": "navFeed",
+        "goMethod": "NavFeed",
+        "paramType": "NavFeedParams",
+        "model": "dynamic.NavFeed",
+        "url": "https://api.bilibili.com/x/polymer/web-dynamic/v1/feed/nav",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "update_baseline",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "offset",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "fixture": "contracts/dynamic/feed/nav/contract.json"
+      },
+      {
+        "contract": "dynamic.live_users",
+        "domain": "dynamic",
+        "accessor": "dynamic",
+        "method": "liveUsers",
+        "goMethod": "LiveUsers",
+        "paramType": "LiveUsersParams",
+        "model": "dynamic.LiveUsers",
+        "url": "https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/w_live_users",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "size",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295"
+          }
+        ],
+        "fixture": "contracts/dynamic/content/live-users/contract.json"
+      },
+      {
+        "contract": "dynamic.lottery_notice",
+        "domain": "dynamic",
+        "accessor": "dynamic",
+        "method": "lotteryNotice",
+        "goMethod": "LotteryNotice",
+        "paramType": "LotteryNoticeParams",
+        "model": "dynamic.LotteryNotice",
+        "url": "https://api.vc.bilibili.com/lottery_svr/v1/lottery_svr/lottery_notice",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "business_id",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "business_type",
+            "type": "string",
+            "required": false,
+            "default": "1",
+            "fixed": true
+          }
+        ],
+        "fixture": "contracts/dynamic/lottery-notice-read/lottery-notice/contract.json",
+        "csrf": "optional"
+      },
+      {
+        "contract": "dynamic.recent_up",
+        "domain": "dynamic",
+        "accessor": "dynamic",
+        "method": "recentUp",
+        "goMethod": "RecentUp",
+        "model": "dynamic.RecentUp",
+        "url": "https://api.bilibili.com/x/polymer/web-dynamic/v1/portal",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [],
+        "fixture": "contracts/dynamic/content/recent-up/contract.json"
+      },
+      {
+        "contract": "dynamic.up_users",
+        "domain": "dynamic",
+        "accessor": "dynamic",
+        "method": "upUsers",
+        "goMethod": "UpUsers",
+        "paramType": "UpUsersParams",
+        "model": "dynamic.UpUsers",
+        "url": "https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/w_dyn_uplist",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "teenagers_mode",
+            "type": "boolean",
+            "required": false,
+            "default": false,
+            "fixed": false
+          }
+        ],
+        "fixture": "contracts/dynamic/content/up-users/contract.json"
+      }
+    ]
+  },
+  {
+    "name": "electric",
+    "specs": [
+      {
+        "contract": "electric.charge_follow_info",
+        "domain": "electric",
+        "accessor": "electric",
+        "method": "chargeFollowInfo",
+        "goMethod": "ChargeFollowInfo",
+        "paramType": "UpMIDParams",
+        "model": "electric.FollowInfo",
+        "url": "https://api.bilibili.com/x/upower/charge/follow/info",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "up_mid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/electric/private-read/charge-follow-info/contract.json"
+      },
+      {
+        "contract": "electric.charge_record",
+        "domain": "electric",
+        "accessor": "electric",
+        "method": "chargeRecord",
+        "goMethod": "ChargeRecord",
+        "paramType": "ChargeRecordParams",
+        "model": "electric.ChargeRecord",
+        "url": "https://api.live.bilibili.com/xlive/revenue/v1/guard/getChargeRecord",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "page",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "18446744073709551615"
+          },
+          {
+            "name": "type",
+            "type": "integer",
+            "required": true,
+            "min": 0,
+            "max": "4294967295"
+          }
+        ],
+        "fixture": "contracts/electric/private-read/charge-record/contract.json"
+      },
+      {
+        "contract": "electric.month_up_list",
+        "domain": "electric",
+        "accessor": "electric",
+        "method": "monthUpList",
+        "goMethod": "MonthUpList",
+        "paramType": "MonthUpListParams",
+        "model": "electric.MonthUpList",
+        "url": "https://api.bilibili.com/x/ugcpay-rank/elec/month/up",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "up_mid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/electric/public-read/month-up-list/contract.json"
+      },
+      {
+        "contract": "electric.rank_recent",
+        "domain": "electric",
+        "accessor": "electric",
+        "method": "rankRecent",
+        "goMethod": "RankRecent",
+        "paramType": "PaginationParams",
+        "model": "electric.RecentRank",
+        "url": "https://member.bilibili.com/x/h5/elec/rank/recent",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "pn",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "18446744073709551615"
+          },
+          {
+            "name": "ps",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "18446744073709551615"
+          }
+        ],
+        "fixture": "contracts/electric/private-read/rank-recent/contract.json"
+      },
+      {
+        "contract": "electric.recharge_list",
+        "domain": "electric",
+        "accessor": "electric",
+        "method": "rechargeList",
+        "goMethod": "RechargeList",
+        "paramType": "RechargeListParams",
+        "model": "electric.RechargeList",
+        "url": "https://pay.bilibili.com/bk/brokerage/listForCustomerRechargeRecord",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "customerId",
+            "type": "string",
+            "required": false,
+            "default": "10026",
+            "fixed": true
+          },
+          {
+            "name": "currentPage",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "18446744073709551615"
+          },
+          {
+            "name": "pageSize",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "18446744073709551615"
+          },
+          {
+            "name": "beginTime",
+            "type": "string",
+            "required": false,
+            "format": "date"
+          },
+          {
+            "name": "endTime",
+            "type": "string",
+            "required": false,
+            "format": "date"
+          }
+        ],
+        "fixture": "contracts/electric/private-read/recharge-list/contract.json"
+      },
+      {
+        "contract": "electric.remark_detail",
+        "domain": "electric",
+        "accessor": "electric",
+        "method": "remarkDetail",
+        "goMethod": "RemarkDetail",
+        "paramType": "RemarkDetailParams",
+        "model": "electric.RemarkDetail",
+        "url": "https://member.bilibili.com/x/web/elec/remark/detail",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "id",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "18446744073709551615"
+          }
+        ],
+        "fixture": "contracts/electric/private-read/remark-detail/contract.json"
+      },
+      {
+        "contract": "electric.remark_list",
+        "domain": "electric",
+        "accessor": "electric",
+        "method": "remarkList",
+        "goMethod": "RemarkList",
+        "paramType": "RemarkListParams",
+        "model": "electric.RemarkList",
+        "url": "https://member.bilibili.com/x/web/elec/remark/list",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "pn",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "18446744073709551615"
+          },
+          {
+            "name": "ps",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "18446744073709551615"
+          },
+          {
+            "name": "begin",
+            "type": "string",
+            "required": false,
+            "format": "date"
+          },
+          {
+            "name": "end",
+            "type": "string",
+            "required": false,
+            "format": "date"
+          }
+        ],
+        "fixture": "contracts/electric/private-read/remark-list/contract.json"
+      },
+      {
+        "contract": "electric.upower_item_detail",
+        "domain": "electric",
+        "accessor": "electric",
+        "method": "itemDetail",
+        "goMethod": "ItemDetail",
+        "paramType": "UpMIDParams",
+        "model": "electric.ItemDetail",
+        "url": "https://api.bilibili.com/x/upower/item/detail",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "up_mid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/electric/public-read/upower-item-detail/contract.json"
+      },
+      {
+        "contract": "electric.upower_member_rank",
+        "domain": "electric",
+        "accessor": "electric",
+        "method": "memberRank",
+        "goMethod": "MemberRank",
+        "paramType": "MemberRankParams",
+        "model": "electric.MemberRank",
+        "url": "https://api.bilibili.com/x/upower/up/member/rank/v2",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "up_mid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "pn",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "18446744073709551615"
+          },
+          {
+            "name": "ps",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "18446744073709551615"
+          },
+          {
+            "name": "privilege_type",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": "18446744073709551615"
+          }
+        ],
+        "fixture": "contracts/electric/public-read/upower-member-rank/contract.json"
+      },
+      {
+        "contract": "electric.video_show",
+        "domain": "electric",
+        "accessor": "electric",
+        "method": "videoShow",
+        "goMethod": "VideoShow",
+        "paramType": "VideoShowParams",
+        "model": "electric.VideoShow",
+        "url": "https://api.bilibili.com/x/web-interface/elec/show",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "mid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "aid",
+            "type": "integer",
+            "required": false,
+            "min": 1
+          },
+          {
+            "name": "bvid",
+            "type": "string",
+            "required": false,
+            "format": "bvid"
+          }
+        ],
+        "fixture": "contracts/electric/public-read/video-show/contract.json"
+      }
+    ]
+  },
+  {
+    "name": "fav",
+    "specs": [
+      {
+        "contract": "fav.collected_list",
+        "domain": "fav",
+        "accessor": "fav",
+        "method": "collectedList",
+        "goMethod": "CollectedList",
+        "paramType": "CollectedListParams",
+        "model": "fav.CollectedList",
+        "url": "https://api.bilibili.com/x/v3/fav/folder/collected/list",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "up_mid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "pn",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295",
+            "default": 1
+          },
+          {
+            "name": "ps",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295",
+            "default": 20
+          },
+          {
+            "name": "platform",
+            "type": "string",
+            "required": false,
+            "default": "web"
+          }
+        ],
+        "fixture": "contracts/fav/read/collected-list/contract.json"
+      },
+      {
+        "contract": "fav.created_list",
+        "domain": "fav",
+        "accessor": "fav",
+        "method": "createdList",
+        "goMethod": "CreatedList",
+        "paramType": "CreatedListParams",
+        "model": "fav.CreatedList",
+        "url": "https://api.bilibili.com/x/v3/fav/folder/created/list-all",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "up_mid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "web_location",
+            "type": "string",
+            "required": false,
+            "default": "333.1387"
+          },
+          {
+            "name": "type",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": "255"
+          },
+          {
+            "name": "rid",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "18446744073709551615"
+          }
+        ],
+        "fixture": "contracts/fav/read/created-list/contract.json"
+      },
+      {
+        "contract": "fav.folder_info",
+        "domain": "fav",
+        "accessor": "fav",
+        "method": "folderInfo",
+        "goMethod": "FolderInfo",
+        "paramType": "FolderInfoParams",
+        "model": "fav.FolderInfo",
+        "url": "https://api.bilibili.com/x/v3/fav/folder/info",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "media_id",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/fav/read/folder-info/contract.json"
+      },
+      {
+        "contract": "fav.list_detail",
+        "domain": "fav",
+        "accessor": "fav",
+        "method": "listDetail",
+        "goMethod": "ListDetail",
+        "paramType": "ListDetailParams",
+        "model": "fav.ListDetail",
+        "url": "https://api.bilibili.com/x/v3/fav/resource/list",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "media_id",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "platform",
+            "type": "string",
+            "required": false,
+            "default": "web",
+            "fixed": true
+          },
+          {
+            "name": "ps",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295",
+            "default": 20
+          },
+          {
+            "name": "tid",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": "4294967295"
+          },
+          {
+            "name": "keyword",
+            "type": "string",
+            "required": false,
+            "trim": true
+          },
+          {
+            "name": "order",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "type",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": "255"
+          },
+          {
+            "name": "pn",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295"
+          }
+        ],
+        "fixture": "contracts/fav/read/list-detail/contract.json"
+      },
+      {
+        "contract": "fav.resource_ids",
+        "domain": "fav",
+        "accessor": "fav",
+        "method": "resourceIDs",
+        "goMethod": "ResourceIDs",
+        "paramType": "ResourceIDsParams",
+        "model": "[]fav.ResourceID",
+        "url": "https://api.bilibili.com/x/v3/fav/resource/ids",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "media_id",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "platform",
+            "type": "string",
+            "required": false,
+            "default": "web",
+            "fixed": true
+          }
+        ],
+        "fixture": "contracts/fav/read/resource-ids/contract.json"
+      },
+      {
+        "contract": "fav.resource_infos",
+        "domain": "fav",
+        "accessor": "fav",
+        "method": "resourceInfos",
+        "goMethod": "ResourceInfos",
+        "paramType": "ResourceInfosParams",
+        "model": "[]fav.ResourceInfo",
+        "url": "https://api.bilibili.com/x/v3/fav/resource/infos",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "resources",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "platform",
+            "type": "string",
+            "required": false,
+            "default": "web"
+          }
+        ],
+        "fixture": "contracts/fav/read/resource-infos/contract.json"
+      }
+    ]
+  },
+  {
+    "name": "historytoview",
+    "specs": [
+      {
+        "contract": "historytoview.history_list",
+        "domain": "historytoview",
+        "accessor": "historyToView",
+        "method": "historyList",
+        "goMethod": "HistoryList",
+        "paramType": "ListParams",
+        "model": "historytoview.HistoryList",
+        "url": "https://api.bilibili.com/x/web-interface/history/cursor",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "max",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": "18446744073709551615"
+          },
+          {
+            "name": "business",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "view_at",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": "18446744073709551615"
+          },
+          {
+            "name": "type",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "ps",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295"
+          }
+        ],
+        "fixture": "contracts/historytoview/read/history-list/contract.json"
+      },
+      {
+        "contract": "historytoview.history_shadow",
+        "domain": "historytoview",
+        "accessor": "historyToView",
+        "method": "historyShadow",
+        "goMethod": "HistoryShadow",
+        "model": "bool",
+        "url": "https://api.bilibili.com/x/v2/history/shadow",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [],
+        "fixture": "contracts/historytoview/read/history-shadow/contract.json"
+      },
+      {
+        "contract": "historytoview.toview_list",
+        "domain": "historytoview",
+        "accessor": "historyToView",
+        "method": "toViewList",
+        "goMethod": "ToViewList",
+        "model": "historytoview.ToViewList",
+        "url": "https://api.bilibili.com/x/v2/history/toview",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [],
+        "fixture": "contracts/historytoview/read/toview-list/contract.json"
+      }
+    ]
+  },
+  {
+    "name": "live",
+    "specs": [
+      {
+        "contract": "live.area_list",
+        "domain": "live",
+        "accessor": "live",
+        "method": "areaList",
+        "goMethod": "AreaList",
+        "model": "[]live.ParentArea",
+        "url": "https://api.live.bilibili.com/room/v1/Area/getList",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [],
+        "fixture": "contracts/live/public-core/area-list/contract.json"
+      },
+      {
+        "contract": "live.banned_users",
+        "domain": "live",
+        "accessor": "live",
+        "method": "bannedUsers",
+        "goMethod": "BannedUsers",
+        "paramType": "BannedUsersParams",
+        "model": "live.BannedUsers",
+        "url": "https://api.live.bilibili.com/xlive/app-ucenter/v2/xbanned/banned/GetBlackList",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "anchor_id",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "pn",
+            "type": "integer",
+            "required": false,
+            "default": 1,
+            "min": 1
+          },
+          {
+            "name": "ps",
+            "type": "integer",
+            "required": false,
+            "default": 10,
+            "min": 1
+          },
+          {
+            "name": "mobi_app",
+            "type": "string",
+            "required": false,
+            "default": "android",
+            "fixed": true
+          },
+          {
+            "name": "platform",
+            "type": "string",
+            "required": false,
+            "default": "android",
+            "fixed": true
+          },
+          {
+            "name": "spmid",
+            "type": "string",
+            "required": false,
+            "default": "444.8.0.0",
+            "fixed": true
+          },
+          {
+            "name": "visit_id",
+            "type": "string",
+            "required": false,
+            "default": "",
+            "fixed": true
+          },
+          {
+            "name": "room_id",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/live/moderation-private-read/banned-users/contract.json",
+        "csrf": "optional",
+        "roomHeaders": "room_id",
+        "headerOnly": [
+          "room_id"
+        ],
+        "csrfBoth": true
+      },
+      {
+        "contract": "live.blind_gift_info",
+        "domain": "live",
+        "accessor": "live",
+        "method": "blindGiftInfo",
+        "goMethod": "BlindGiftInfo",
+        "paramType": "BlindGiftInfoParams",
+        "model": "live.BlindGiftInfo",
+        "url": "https://api.live.bilibili.com/xlive/general-interface/v1/blindFirstWin/getInfo",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "gift_id",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "18446744073709551615"
+          }
+        ],
+        "fixture": "contracts/live/gift-read/blind-gift-info/contract.json"
+      },
+      {
+        "contract": "live.danmu_info",
+        "domain": "live",
+        "accessor": "live",
+        "method": "danmuInfo",
+        "goMethod": "DanmuInfo",
+        "paramType": "DanmuInfoParams",
+        "model": "live.DanmuInfo",
+        "url": "https://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo",
+        "httpMethod": "GET",
+        "wbi": true,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "id",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "type",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": 255,
+            "default": 0
+          }
+        ],
+        "fixture": "contracts/live/room-interaction-read/danmu-info/contract.json"
+      },
+      {
+        "contract": "live.emoticons",
+        "domain": "live",
+        "accessor": "live",
+        "method": "emoticons",
+        "goMethod": "Emoticons",
+        "paramType": "EmoticonsParams",
+        "model": "live.EmoticonData",
+        "url": "https://api.live.bilibili.com/xlive/web-ucenter/v2/emoticon/GetEmoticons",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "room_id",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "platform",
+            "type": "string",
+            "required": false,
+            "default": "pc"
+          }
+        ],
+        "fixture": "contracts/live/room-interaction-read/emoticons/contract.json"
+      },
+      {
+        "contract": "live.follow_up_list",
+        "domain": "live",
+        "accessor": "live",
+        "method": "followUpList",
+        "goMethod": "FollowUpList",
+        "paramType": "FollowUpListParams",
+        "model": "live.FollowUpList",
+        "url": "https://api.live.bilibili.com/xlive/web-ucenter/user/following",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "page",
+            "type": "integer",
+            "required": false,
+            "min": 1
+          },
+          {
+            "name": "page_size",
+            "type": "integer",
+            "required": false,
+            "min": 1
+          },
+          {
+            "name": "ignoreRecord",
+            "type": "boolean",
+            "required": false,
+            "min": 0,
+            "max": "255"
+          },
+          {
+            "name": "hit_ab",
+            "type": "boolean",
+            "required": false,
+            "booleanEncoding": "literal"
+          }
+        ],
+        "fixture": "contracts/live/account-private-read/follow-up-list/contract.json"
+      },
+      {
+        "contract": "live.follow_up_web_list",
+        "domain": "live",
+        "accessor": "live",
+        "method": "followUpWebList",
+        "goMethod": "FollowUpWebList",
+        "paramType": "FollowUpWebListParams",
+        "model": "live.FollowUpWebList",
+        "url": "https://api.live.bilibili.com/xlive/web-ucenter/v1/xfetter/GetWebList",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "hit_ab",
+            "type": "boolean",
+            "required": false,
+            "booleanEncoding": "literal"
+          }
+        ],
+        "fixture": "contracts/live/account-private-read/follow-up-web-list/contract.json"
+      },
+      {
+        "contract": "live.gift_types",
+        "domain": "live",
+        "accessor": "live",
+        "method": "giftTypes",
+        "goMethod": "GiftTypes",
+        "model": "[]live.GiftType",
+        "url": "https://api.live.bilibili.com/gift/v1/master/getGiftTypes",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [],
+        "fixture": "contracts/live/gift-read/gift-types/contract.json"
+      },
+      {
+        "contract": "live.guard_list",
+        "domain": "live",
+        "accessor": "live",
+        "method": "guardList",
+        "goMethod": "GuardList",
+        "paramType": "GuardListParams",
+        "model": "live.GuardList",
+        "url": "https://api.live.bilibili.com/xlive/app-room/v2/guardTab/topListNew",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "roomid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "ruid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "page",
+            "type": "integer",
+            "required": false,
+            "default": 1,
+            "min": 1
+          },
+          {
+            "name": "page_size",
+            "type": "integer",
+            "required": false,
+            "default": 20,
+            "min": 1
+          },
+          {
+            "name": "typ",
+            "type": "integer",
+            "required": false,
+            "default": 5,
+            "min": 1,
+            "max": "4294967295"
+          }
+        ],
+        "fixture": "contracts/live/guard-read/guard-list/contract.json"
+      },
+      {
+        "contract": "live.lottery_info",
+        "domain": "live",
+        "accessor": "live",
+        "method": "lotteryInfo",
+        "goMethod": "LotteryInfo",
+        "paramType": "LotteryInfoParams",
+        "model": "live.LotteryInfo",
+        "url": "https://api.live.bilibili.com/xlive/lottery-interface/v1/lottery/getLotteryInfoWeb",
+        "httpMethod": "GET",
+        "wbi": true,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "roomid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/live/room-interaction-read/lottery-info/contract.json"
+      },
+      {
+        "contract": "live.my_medals",
+        "domain": "live",
+        "accessor": "live",
+        "method": "myMedals",
+        "goMethod": "MyMedals",
+        "paramType": "MyMedalsParams",
+        "model": "live.MyMedals",
+        "url": "https://api.live.bilibili.com/xlive/app-ucenter/v1/user/GetMyMedals",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "page",
+            "type": "integer",
+            "required": false,
+            "default": 1,
+            "min": 1
+          },
+          {
+            "name": "page_size",
+            "type": "integer",
+            "required": false,
+            "default": 10,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/live/account-private-read/my-medals/contract.json"
+      },
+      {
+        "contract": "live.recommend",
+        "domain": "live",
+        "accessor": "live",
+        "method": "recommend",
+        "goMethod": "Recommend",
+        "model": "live.Recommend",
+        "url": "https://api.live.bilibili.com/xlive/web-interface/v1/webMain/getMoreRecList",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "platform",
+            "type": "string",
+            "required": false,
+            "default": "web"
+          },
+          {
+            "name": "web_location",
+            "type": "string",
+            "required": false,
+            "default": "333.1007"
+          }
+        ],
+        "fixture": "contracts/live/public-core/recommend/contract.json"
+      },
+      {
+        "contract": "live.replay_list",
+        "domain": "live",
+        "accessor": "live",
+        "method": "replayList",
+        "goMethod": "ReplayList",
+        "paramType": "ReplayListParams",
+        "model": "live.ReplayList",
+        "url": "https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/AnchorGetReplayList",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "page",
+            "type": "integer",
+            "required": false,
+            "min": 1
+          },
+          {
+            "name": "page_size",
+            "type": "integer",
+            "required": false,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/live/account-private-read/replay-list/contract.json"
+      },
+      {
+        "contract": "live.room_gift_list",
+        "domain": "live",
+        "accessor": "live",
+        "method": "roomGiftList",
+        "goMethod": "RoomGiftList",
+        "paramType": "RoomGiftListParams",
+        "model": "live.RoomGiftList",
+        "url": "https://api.live.bilibili.com/xlive/web-room/v1/giftPanel/roomGiftList",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "room_id",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "platform",
+            "type": "string",
+            "required": false,
+            "default": "web",
+            "fixed": true
+          },
+          {
+            "name": "area_parent_id",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295"
+          },
+          {
+            "name": "area_id",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295"
+          }
+        ],
+        "fixture": "contracts/live/gift-read/room-gift-list/contract.json"
+      },
+      {
+        "contract": "live.room_info",
+        "domain": "live",
+        "accessor": "live",
+        "method": "roomInfo",
+        "goMethod": "RoomInfo",
+        "paramType": "RoomInfoParams",
+        "model": "live.RoomInfo",
+        "url": "https://api.live.bilibili.com/room/v1/Room/get_info",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "room_id",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/live/public-core/room-info/contract.json"
+      },
+      {
+        "contract": "live.shield_keywords",
+        "domain": "live",
+        "accessor": "live",
+        "method": "shieldKeywords",
+        "goMethod": "ShieldKeywords",
+        "paramType": "ShieldKeywordsParams",
+        "model": "live.ShieldKeywords",
+        "url": "https://api.live.bilibili.com/xlive/app-ucenter/v1/banned/GetShieldKeywordList",
+        "httpMethod": "POST",
+        "bodyType": "form",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "room_id",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "spmid",
+            "type": "string",
+            "required": false,
+            "default": "444.8.0.0",
+            "fixed": true
+          },
+          {
+            "name": "visit_id",
+            "type": "string",
+            "required": false,
+            "default": "",
+            "fixed": true
+          },
+          {
+            "name": "mobi_app",
+            "type": "string",
+            "required": false,
+            "default": "android",
+            "fixed": true
+          },
+          {
+            "name": "platform",
+            "type": "string",
+            "required": false,
+            "default": "android",
+            "fixed": true
+          }
+        ],
+        "fixture": "contracts/live/moderation-private-read/shield-keywords/contract.json",
+        "csrf": "optional",
+        "roomHeaders": "room_id",
+        "csrfBoth": true
+      },
+      {
+        "contract": "live.silent_users",
+        "domain": "live",
+        "accessor": "live",
+        "method": "silentUsers",
+        "goMethod": "SilentUsers",
+        "paramType": "SilentUsersParams",
+        "model": "live.SilentUsers",
+        "url": "https://api.live.bilibili.com/xlive/web-ucenter/v1/banned/GetSilentUserList",
+        "httpMethod": "POST",
+        "bodyType": "form",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "room_id",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "pn",
+            "type": "integer",
+            "required": false,
+            "default": 1,
+            "min": 1
+          },
+          {
+            "name": "ps",
+            "type": "integer",
+            "required": false,
+            "default": 10,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/live/moderation-private-read/silent-users/contract.json",
+        "csrf": "optional",
+        "roomHeaders": "room_id",
+        "csrfBoth": true
+      },
+      {
+        "contract": "live.stream",
+        "domain": "live",
+        "accessor": "live",
+        "method": "stream",
+        "goMethod": "Stream",
+        "paramType": "StreamParams",
+        "model": "live.Stream",
+        "url": "https://api.live.bilibili.com/room/v1/Room/playUrl",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "cid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "platform",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "quality",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295"
+          },
+          {
+            "name": "qn",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295"
+          }
+        ],
+        "fixture": "contracts/live/public-core/stream/contract.json"
+      },
+      {
+        "contract": "live.version",
+        "domain": "live",
+        "accessor": "live",
+        "method": "version",
+        "goMethod": "Version",
+        "model": "live.Version",
+        "url": "https://api.live.bilibili.com/xlive/app-blink/v1/liveVersionInfo/getHomePageLiveVersion",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "system_version",
+            "type": "string",
+            "required": false,
+            "default": "2"
+          }
+        ],
+        "fixture": "contracts/live/public-core/version/contract.json"
+      },
+      {
+        "contract": "live.web_heart_beat",
+        "domain": "live",
+        "accessor": "live",
+        "method": "webHeartBeat",
+        "goMethod": "WebHeartBeat",
+        "paramType": "WebHeartBeatParams",
+        "model": "live.HeartBeat",
+        "url": "https://live-trace.bilibili.com/xlive/rdata-interface/v1/heartbeat/webHeartBeat",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "hb",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "pf",
+            "type": "string",
+            "required": false,
+            "default": "web"
+          }
+        ],
+        "fixture": "contracts/live/telemetry-read/heartbeat/contract.json"
+      }
+    ]
+  },
+  {
+    "name": "login",
+    "specs": [
+      {
+        "contract": "login.account_info",
+        "domain": "login",
+        "accessor": "login",
+        "method": "accountInfo",
+        "goMethod": "AccountInfo",
+        "model": "login.AccountInfo",
+        "url": "https://api.bilibili.com/x/member/web/account",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [],
+        "fixture": "contracts/login/account-info/contract.json"
+      },
+      {
+        "contract": "login.captcha_generate",
+        "domain": "login",
+        "accessor": "login",
+        "method": "generateCaptcha",
+        "goMethod": "GenerateCaptcha",
+        "model": "login.Captcha",
+        "url": "https://passport.bilibili.com/x/passport-login/captcha",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "source",
+            "type": "string",
+            "required": false,
+            "default": "main_web"
+          }
+        ],
+        "fixture": "contracts/login/captcha/generate/contract.json",
+        "transform": "captcha"
+      },
+      {
+        "contract": "login.coin",
+        "domain": "login",
+        "accessor": "login",
+        "method": "coin",
+        "goMethod": "Coin",
+        "model": "login.CoinBalance",
+        "url": "https://account.bilibili.com/site/getCoin",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [],
+        "fixture": "contracts/login/coin/contract.json"
+      },
+      {
+        "contract": "login.daily_reward",
+        "domain": "login",
+        "accessor": "login",
+        "method": "dailyReward",
+        "goMethod": "DailyReward",
+        "model": "login.DailyReward",
+        "url": "https://api.bilibili.com/x/member/web/exp/reward",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [],
+        "fixture": "contracts/login/daily-reward/contract.json"
+      },
+      {
+        "contract": "login.log",
+        "domain": "login",
+        "accessor": "login",
+        "method": "log",
+        "goMethod": "Log",
+        "paramType": "LogParams",
+        "model": "login.Log",
+        "url": "https://api.bilibili.com/x/member/web/login/log",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "jsonp",
+            "type": "string",
+            "required": false,
+            "default": "jsonp"
+          },
+          {
+            "name": "web_location",
+            "type": "string",
+            "required": false,
+            "default": "333.33"
+          }
+        ],
+        "fixture": "contracts/login/notice/login-log/contract.json"
+      },
+      {
+        "contract": "login.nav",
+        "domain": "login",
+        "accessor": "login",
+        "method": "nav",
+        "goMethod": "Nav",
+        "model": "login.Nav",
+        "url": "https://api.bilibili.com/x/web-interface/nav",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [],
+        "fixture": "contracts/login/nav/contract.json"
+      },
+      {
+        "contract": "login.notice",
+        "domain": "login",
+        "accessor": "login",
+        "method": "notice",
+        "goMethod": "Notice",
+        "paramType": "NoticeParams",
+        "model": "login.Notice",
+        "url": "https://api.bilibili.com/x/safecenter/login_notice",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "mid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "buvid",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "fixture": "contracts/login/notice/login-notice/contract.json"
+      },
+      {
+        "contract": "login.qr.flow",
+        "domain": "login",
+        "accessor": "login",
+        "method": "qrFlow",
+        "goMethod": "QRFlow",
+        "model": "login.QRFlow",
+        "url": "https://passport.bilibili.com/x/passport-login/web/qrcode/generate",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [],
+        "fixture": "contracts/login/qr/flow/contract.json",
+        "special": "qrFlow"
+      },
+      {
+        "contract": "login.qr_generate",
+        "domain": "login",
+        "accessor": "login",
+        "method": "generateQR",
+        "goMethod": "GenerateQR",
+        "model": "login.QRGenerate",
+        "url": "https://passport.bilibili.com/x/passport-login/web/qrcode/generate",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [],
+        "fixture": "contracts/login/qr/generate/contract.json"
+      },
+      {
+        "contract": "login.qr_poll",
+        "domain": "login",
+        "accessor": "login",
+        "method": "pollQR",
+        "goMethod": "PollQR",
+        "paramType": "QRPollParams",
+        "model": "login.QRStatus",
+        "url": "https://passport.bilibili.com/x/passport-login/web/qrcode/poll",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "qrcode_key",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "fixture": "contracts/login/qr/poll/contract.json",
+        "special": "pollQR"
+      },
+      {
+        "contract": "login.stat",
+        "domain": "login",
+        "accessor": "login",
+        "method": "stat",
+        "goMethod": "Stat",
+        "model": "login.Stats",
+        "url": "https://api.bilibili.com/x/web-interface/nav/stat",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [],
+        "fixture": "contracts/login/stat/contract.json"
+      },
+      {
+        "contract": "login.today_coin_exp",
+        "domain": "login",
+        "accessor": "login",
+        "method": "todayCoinExp",
+        "goMethod": "TodayCoinExp",
+        "model": "login.TodayCoinExp",
+        "url": "https://api.bilibili.com/x/web-interface/coin/today/exp",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [],
+        "fixture": "contracts/login/today-coin-exp/contract.json"
+      },
+      {
+        "contract": "login.vip_info",
+        "domain": "login",
+        "accessor": "login",
+        "method": "vipInfo",
+        "goMethod": "VIPInfo",
+        "model": "login.VIPInfo",
+        "url": "https://api.bilibili.com/x/vip/web/user/info",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [],
+        "fixture": "contracts/login/vip-info/contract.json"
+      }
+    ]
+  },
+  {
+    "name": "manga",
+    "specs": [
+      {
+        "contract": "manga.clock_in_info",
+        "domain": "manga",
+        "accessor": "manga",
+        "method": "clockInInfo",
+        "goMethod": "ClockInInfo",
+        "model": "manga.ClockInInfo",
+        "url": "https://manga.bilibili.com/twirp/activity.v1.Activity/GetClockInInfo",
+        "httpMethod": "POST",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [],
+        "fixture": "contracts/manga/read-core/clock-in-info/contract.json"
+      },
+      {
+        "contract": "manga.coupons",
+        "domain": "manga",
+        "accessor": "manga",
+        "method": "coupons",
+        "goMethod": "Coupons",
+        "paramType": "CouponsParams",
+        "model": "manga.Coupons",
+        "url": "https://manga.bilibili.com/twirp/user.v1.User/GetCoupons",
+        "httpMethod": "POST",
+        "bodyType": "json",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "pageNum",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "default": 1
+          },
+          {
+            "name": "pageSize",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": 100,
+            "default": 20
+          },
+          {
+            "name": "notExpired",
+            "type": "boolean",
+            "required": false,
+            "min": 0,
+            "default": true,
+            "fixed": true
+          },
+          {
+            "name": "tabType",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "default": 1,
+            "fixed": true
+          },
+          {
+            "name": "type",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "default": 0,
+            "fixed": true
+          }
+        ],
+        "fixture": "contracts/manga/read-core/coupons/contract.json"
+      },
+      {
+        "contract": "manga.point_products",
+        "domain": "manga",
+        "accessor": "manga",
+        "method": "pointProducts",
+        "goMethod": "PointProducts",
+        "model": "[]manga.Product",
+        "url": "https://manga.bilibili.com/twirp/pointshop.v1.Pointshop/ListProduct",
+        "httpMethod": "POST",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [],
+        "fixture": "contracts/manga/read-core/point-products/contract.json"
+      },
+      {
+        "contract": "manga.season_info",
+        "domain": "manga",
+        "accessor": "manga",
+        "method": "seasonInfo",
+        "goMethod": "SeasonInfo",
+        "model": "manga.SeasonInfo",
+        "url": "https://manga.bilibili.com/twirp/user.v1.Season/GetSeasonInfo",
+        "httpMethod": "POST",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [],
+        "fixture": "contracts/manga/read-core/season-info/contract.json"
+      },
+      {
+        "contract": "manga.user_point",
+        "domain": "manga",
+        "accessor": "manga",
+        "method": "userPoint",
+        "goMethod": "UserPoint",
+        "model": "manga.UserPoint",
+        "url": "https://manga.bilibili.com/twirp/pointshop.v1.Pointshop/GetUserPoint",
+        "httpMethod": "POST",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [],
+        "fixture": "contracts/manga/read-core/user-point/contract.json"
+      }
+    ]
+  },
+  {
+    "name": "message",
+    "specs": [
+      {
+        "contract": "message.reply_feed",
+        "domain": "message",
+        "accessor": "message",
+        "method": "replyFeed",
+        "goMethod": "ReplyFeed",
+        "paramType": "ReplyFeedParams",
+        "model": "message.ReplyFeed",
+        "url": "https://api.bilibili.com/x/msgfeed/reply",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "build",
+            "type": "string",
+            "required": false,
+            "default": "0",
+            "fixed": true
+          },
+          {
+            "name": "mobi_app",
+            "type": "string",
+            "required": false,
+            "default": "web",
+            "fixed": true
+          },
+          {
+            "name": "platform",
+            "type": "string",
+            "required": false,
+            "default": "web",
+            "fixed": true
+          },
+          {
+            "name": "web_location",
+            "type": "string",
+            "required": false,
+            "default": ""
+          },
+          {
+            "name": "id",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "18446744073709551615"
+          },
+          {
+            "name": "reply_time",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "18446744073709551615"
+          }
+        ],
+        "fixture": "contracts/message/read/reply-feed/contract.json"
+      },
+      {
+        "contract": "message.single_unread",
+        "domain": "message",
+        "accessor": "message",
+        "method": "singleUnread",
+        "goMethod": "SingleUnread",
+        "paramType": "SingleUnreadParams",
+        "model": "message.SingleUnread",
+        "url": "https://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "build",
+            "type": "string",
+            "required": false,
+            "default": "0",
+            "fixed": true
+          },
+          {
+            "name": "mobi_app",
+            "type": "string",
+            "required": false,
+            "default": "web",
+            "fixed": true
+          },
+          {
+            "name": "show_dustbin",
+            "type": "boolean",
+            "required": false,
+            "default": false
+          },
+          {
+            "name": "show_unfollow_list",
+            "type": "boolean",
+            "required": false,
+            "default": false
+          },
+          {
+            "name": "unread_type",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": "4294967295",
+            "default": 0
+          }
+        ],
+        "fixture": "contracts/message/read/single-unread/contract.json"
+      },
+      {
+        "contract": "message.unread_count",
+        "domain": "message",
+        "accessor": "message",
+        "method": "unreadCount",
+        "goMethod": "UnreadCount",
+        "paramType": "UnreadCountParams",
+        "model": "message.UnreadCount",
+        "url": "https://api.vc.bilibili.com/x/im/web/msgfeed/unread",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "build",
+            "type": "string",
+            "required": false,
+            "default": "0"
+          },
+          {
+            "name": "mobi_app",
+            "type": "string",
+            "required": false,
+            "default": "web"
+          }
+        ],
+        "fixture": "contracts/message/read/unread-count/contract.json"
+      }
+    ]
+  },
+  {
+    "name": "misc",
+    "specs": [
+      {
+        "contract": "misc.b23tv.short_link",
+        "domain": "misc",
+        "accessor": "misc",
+        "method": "shortLink",
+        "goMethod": "ShortLink",
+        "paramType": "ShortLinkParams",
+        "model": "misc.ShortLink",
+        "url": "https://api.biliapi.net/x/share/click",
+        "httpMethod": "POST",
+        "bodyType": "form",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "platform",
+            "type": "string",
+            "required": false,
+            "default": "unix"
+          },
+          {
+            "name": "share_channel",
+            "type": "string",
+            "required": false,
+            "default": "COPY"
+          },
+          {
+            "name": "share_id",
+            "type": "string",
+            "required": false,
+            "default": "main.ugc-video-detail.0.0.pv"
+          },
+          {
+            "name": "share_mode",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": "4294967295",
+            "default": 4
+          },
+          {
+            "name": "oid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "buvid",
+            "type": "string",
+            "required": false,
+            "default": "qwq"
+          },
+          {
+            "name": "build",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": "18446744073709551615",
+            "default": 6114514
+          }
+        ],
+        "fixture": "contracts/misc/b23tv/short-link/contract.json",
+        "transform": "shortLink"
+      },
+      {
+        "contract": "misc.bili_ticket",
+        "domain": "misc",
+        "accessor": "misc",
+        "method": "biliTicket",
+        "goMethod": "BiliTicket",
+        "model": "misc.Ticket",
+        "url": "https://api.bilibili.com/bapis/bilibili.api.ticket.v1.Ticket/GenWebTicket",
+        "httpMethod": "POST",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [],
+        "fixture": "contracts/misc/sign/bili-ticket/contract.json",
+        "ticket": true
+      },
+      {
+        "contract": "misc.buvid",
+        "domain": "misc",
+        "accessor": "misc",
+        "method": "buvid",
+        "goMethod": "Buvid",
+        "model": "misc.Buvid",
+        "url": "https://api.bilibili.com/x/frontend/finger/spi",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [],
+        "fixture": "contracts/misc/buvid/contract.json"
+      },
+      {
+        "contract": "misc.buvid3",
+        "domain": "misc",
+        "accessor": "misc",
+        "method": "buvid3",
+        "goMethod": "Buvid3",
+        "model": "misc.Buvid3",
+        "url": "https://api.bilibili.com/x/web-frontend/getbuvid",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [],
+        "fixture": "contracts/misc/buvid3/contract.json"
+      }
+    ]
+  },
+  {
+    "name": "note",
+    "specs": [
+      {
+        "contract": "note.archive_list",
+        "domain": "note",
+        "accessor": "note",
+        "method": "archiveList",
+        "goMethod": "ArchiveList",
+        "paramType": "ArchiveListParams",
+        "model": "note.ArchiveList",
+        "url": "https://api.bilibili.com/x/note/list/archive",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "oid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "oid_type",
+            "type": "string",
+            "required": false,
+            "default": "0",
+            "fixed": true
+          }
+        ],
+        "fixture": "contracts/note/read/archive-list/contract.json"
+      },
+      {
+        "contract": "note.is_forbid",
+        "domain": "note",
+        "accessor": "note",
+        "method": "isForbid",
+        "goMethod": "IsForbid",
+        "paramType": "IsForbidParams",
+        "model": "note.IsForbid",
+        "url": "https://api.bilibili.com/x/note/is_forbid",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "aid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/note/read/is-forbid/contract.json"
+      },
+      {
+        "contract": "note.private_info",
+        "domain": "note",
+        "accessor": "note",
+        "method": "privateInfo",
+        "goMethod": "PrivateInfo",
+        "paramType": "PrivateInfoParams",
+        "model": "note.PrivateInfo",
+        "url": "https://api.bilibili.com/x/note/info",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "oid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "oid_type",
+            "type": "string",
+            "required": false,
+            "default": "0",
+            "fixed": true
+          },
+          {
+            "name": "note_id",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/note/read/private-info/contract.json"
+      },
+      {
+        "contract": "note.public_archive_list",
+        "domain": "note",
+        "accessor": "note",
+        "method": "publicArchiveList",
+        "goMethod": "PublicArchiveList",
+        "paramType": "PublicArchiveListParams",
+        "model": "note.PublicArchiveList",
+        "url": "https://api.bilibili.com/x/note/publish/list/archive",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "pn",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295",
+            "default": 1
+          },
+          {
+            "name": "ps",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295",
+            "default": 10
+          },
+          {
+            "name": "oid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "oid_type",
+            "type": "integer",
+            "required": false,
+            "default": 0,
+            "fixed": true
+          }
+        ],
+        "fixture": "contracts/note/read/public-archive-list/contract.json"
+      },
+      {
+        "contract": "note.public_info",
+        "domain": "note",
+        "accessor": "note",
+        "method": "publicInfo",
+        "goMethod": "PublicInfo",
+        "paramType": "PublicInfoParams",
+        "model": "note.PublicInfo",
+        "url": "https://api.bilibili.com/x/note/publish/info",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "cvid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/note/read/public-info/contract.json"
+      },
+      {
+        "contract": "note.user_private_list",
+        "domain": "note",
+        "accessor": "note",
+        "method": "userPrivateList",
+        "goMethod": "UserPrivateList",
+        "paramType": "Pagination",
+        "model": "note.PrivateList",
+        "url": "https://api.bilibili.com/x/note/list",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "pn",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295",
+            "default": 1
+          },
+          {
+            "name": "ps",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295",
+            "default": 10
+          }
+        ],
+        "fixture": "contracts/note/read/user-private-list/contract.json"
+      },
+      {
+        "contract": "note.user_public_list",
+        "domain": "note",
+        "accessor": "note",
+        "method": "userPublicList",
+        "goMethod": "UserPublicList",
+        "paramType": "Pagination",
+        "model": "note.PublicUserList",
+        "url": "https://api.bilibili.com/x/note/publish/list/user",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "pn",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295",
+            "default": 1
+          },
+          {
+            "name": "ps",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295",
+            "default": 10
+          }
+        ],
+        "fixture": "contracts/note/read/user-public-list/contract.json"
+      }
+    ]
+  },
+  {
+    "name": "opus",
+    "specs": [
+      {
+        "contract": "opus.space_feed",
+        "domain": "opus",
+        "accessor": "opus",
+        "method": "spaceFeed",
+        "goMethod": "SpaceFeed",
+        "paramType": "SpaceFeedParams",
+        "model": "opus.SpaceFeed",
+        "url": "https://api.bilibili.com/x/polymer/web-dynamic/v1/opus/feed/space",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "host_mid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "page",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": "4294967295",
+            "default": 0
+          },
+          {
+            "name": "type",
+            "type": "string",
+            "required": false,
+            "default": "all",
+            "enum": [
+              "all",
+              "article",
+              "dynamic"
+            ]
+          },
+          {
+            "name": "web_location",
+            "type": "string",
+            "required": false,
+            "default": "333.1387",
+            "fixed": true
+          },
+          {
+            "name": "offset",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "fixture": "contracts/opus/space-read/space-feed/contract.json"
+      }
+    ]
+  },
+  {
+    "name": "search",
+    "specs": [
+      {
+        "contract": "search.article",
+        "domain": "search",
+        "accessor": "search",
+        "method": "article",
+        "goMethod": "Article",
+        "paramType": "ArticleParams",
+        "model": "search.Data[[]search.Article]",
+        "url": "https://api.bilibili.com/x/web-interface/wbi/search/type",
+        "httpMethod": "GET",
+        "wbi": true,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "search_type",
+            "type": "string",
+            "required": false,
+            "default": "article",
+            "fixed": true
+          },
+          {
+            "name": "keyword",
+            "type": "string",
+            "required": true,
+            "trim": true
+          },
+          {
+            "name": "page",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295",
+            "default": 1
+          },
+          {
+            "name": "order",
+            "type": "string",
+            "required": false,
+            "default": "totalrank",
+            "enum": [
+              "totalrank",
+              "click",
+              "pubdate",
+              "dm",
+              "stow",
+              "scores",
+              "attention",
+              "online",
+              "live_time",
+              "0",
+              "fans",
+              "level"
+            ]
+          },
+          {
+            "name": "category_id",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": "255",
+            "default": 0,
+            "enum": [
+              0,
+              1,
+              2,
+              3,
+              16,
+              17,
+              28,
+              29
+            ]
+          }
+        ],
+        "fixture": "contracts/search/read/article/contract.json"
+      },
+      {
+        "contract": "search.bangumi",
+        "domain": "search",
+        "accessor": "search",
+        "method": "bangumi",
+        "goMethod": "Bangumi",
+        "paramType": "BangumiParams",
+        "model": "search.Data[[]search.Bangumi]",
+        "url": "https://api.bilibili.com/x/web-interface/wbi/search/type",
+        "httpMethod": "GET",
+        "wbi": true,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "search_type",
+            "type": "string",
+            "required": false,
+            "default": "media_bangumi",
+            "fixed": true
+          },
+          {
+            "name": "keyword",
+            "type": "string",
+            "required": true,
+            "trim": true
+          },
+          {
+            "name": "page",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295",
+            "default": 1
+          }
+        ],
+        "fixture": "contracts/search/read/bangumi/contract.json"
+      },
+      {
+        "contract": "search.bili_user",
+        "domain": "search",
+        "accessor": "search",
+        "method": "users",
+        "goMethod": "Users",
+        "paramType": "UserParams",
+        "model": "search.Data[[]search.User]",
+        "url": "https://api.bilibili.com/x/web-interface/wbi/search/type",
+        "httpMethod": "GET",
+        "wbi": true,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "search_type",
+            "type": "string",
+            "required": false,
+            "default": "bili_user",
+            "fixed": true
+          },
+          {
+            "name": "keyword",
+            "type": "string",
+            "required": true,
+            "trim": true
+          },
+          {
+            "name": "page",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295",
+            "default": 1
+          },
+          {
+            "name": "order_sort",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": 1,
+            "default": 1
+          },
+          {
+            "name": "user_type",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": 3,
+            "default": 0
+          }
+        ],
+        "fixture": "contracts/search/read/bili-user/contract.json"
+      },
+      {
+        "contract": "search.default",
+        "domain": "search",
+        "accessor": "search",
+        "method": "default",
+        "goMethod": "Default",
+        "model": "search.Default",
+        "url": "https://api.bilibili.com/x/web-interface/wbi/search/default",
+        "httpMethod": "GET",
+        "wbi": true,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "foo",
+            "type": "string",
+            "required": false,
+            "default": "bar"
+          }
+        ],
+        "fixture": "contracts/search/read/default/contract.json"
+      },
+      {
+        "contract": "search.hotwords",
+        "domain": "search",
+        "accessor": "search",
+        "method": "hotWords",
+        "goMethod": "HotWords",
+        "model": "search.HotWords",
+        "url": "https://s.search.bilibili.com/main/hotword",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "json",
+        "fields": [],
+        "fixture": "contracts/search/read/hotwords/contract.json"
+      },
+      {
+        "contract": "search.live",
+        "domain": "search",
+        "accessor": "search",
+        "method": "live",
+        "goMethod": "Live",
+        "paramType": "LiveParams",
+        "model": "search.Data[search.LiveData]",
+        "url": "https://api.bilibili.com/x/web-interface/wbi/search/type",
+        "httpMethod": "GET",
+        "wbi": true,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "search_type",
+            "type": "string",
+            "required": false,
+            "default": "live",
+            "fixed": true
+          },
+          {
+            "name": "keyword",
+            "type": "string",
+            "required": true,
+            "trim": true
+          },
+          {
+            "name": "page",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295",
+            "default": 1
+          }
+        ],
+        "fixture": "contracts/search/read/live/contract.json"
+      },
+      {
+        "contract": "search.live_room",
+        "domain": "search",
+        "accessor": "search",
+        "method": "liveRooms",
+        "goMethod": "LiveRooms",
+        "paramType": "LiveRoomParams",
+        "model": "search.Data[[]search.LiveRoom]",
+        "url": "https://api.bilibili.com/x/web-interface/wbi/search/type",
+        "httpMethod": "GET",
+        "wbi": true,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "search_type",
+            "type": "string",
+            "required": false,
+            "default": "live_room",
+            "fixed": true
+          },
+          {
+            "name": "keyword",
+            "type": "string",
+            "required": true,
+            "trim": true
+          },
+          {
+            "name": "page",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295",
+            "default": 1
+          },
+          {
+            "name": "order",
+            "type": "string",
+            "required": false,
+            "default": "online",
+            "enum": [
+              "totalrank",
+              "click",
+              "pubdate",
+              "dm",
+              "stow",
+              "scores",
+              "attention",
+              "online",
+              "live_time",
+              "0",
+              "fans",
+              "level"
+            ]
+          }
+        ],
+        "fixture": "contracts/search/read/live-room/contract.json"
+      },
+      {
+        "contract": "search.live_user",
+        "domain": "search",
+        "accessor": "search",
+        "method": "liveUsers",
+        "goMethod": "LiveUsers",
+        "paramType": "LiveUserParams",
+        "model": "search.Data[[]search.LiveUser]",
+        "url": "https://api.bilibili.com/x/web-interface/wbi/search/type",
+        "httpMethod": "GET",
+        "wbi": true,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "search_type",
+            "type": "string",
+            "required": false,
+            "default": "live_user",
+            "fixed": true
+          },
+          {
+            "name": "keyword",
+            "type": "string",
+            "required": true,
+            "trim": true
+          },
+          {
+            "name": "page",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295",
+            "default": 1
+          },
+          {
+            "name": "order_sort",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": 1,
+            "default": 1
+          },
+          {
+            "name": "user_type",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": 3,
+            "default": 0
+          }
+        ],
+        "fixture": "contracts/search/read/live-user/contract.json"
+      },
+      {
+        "contract": "search.movie",
+        "domain": "search",
+        "accessor": "search",
+        "method": "movies",
+        "goMethod": "Movies",
+        "paramType": "MovieParams",
+        "model": "search.Data[[]search.Movie]",
+        "url": "https://api.bilibili.com/x/web-interface/wbi/search/type",
+        "httpMethod": "GET",
+        "wbi": true,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "search_type",
+            "type": "string",
+            "required": false,
+            "default": "media_ft",
+            "fixed": true
+          },
+          {
+            "name": "keyword",
+            "type": "string",
+            "required": true,
+            "trim": true
+          },
+          {
+            "name": "page",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295",
+            "default": 1
+          }
+        ],
+        "fixture": "contracts/search/read/movie/contract.json"
+      },
+      {
+        "contract": "search.suggest",
+        "domain": "search",
+        "accessor": "search",
+        "method": "suggest",
+        "goMethod": "Suggest",
+        "paramType": "SuggestParams",
+        "model": "search.Suggest",
+        "url": "https://s.search.bilibili.com/main/suggest",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "term",
+            "type": "string",
+            "required": true,
+            "trim": true
+          }
+        ],
+        "fixture": "contracts/search/read/suggest/contract.json"
+      },
+      {
+        "contract": "search.video",
+        "domain": "search",
+        "accessor": "search",
+        "method": "videos",
+        "goMethod": "Videos",
+        "paramType": "VideoParams",
+        "model": "search.Data[[]search.Video]",
+        "url": "https://api.bilibili.com/x/web-interface/wbi/search/type",
+        "httpMethod": "GET",
+        "wbi": true,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "search_type",
+            "type": "string",
+            "required": false,
+            "default": "video",
+            "fixed": true
+          },
+          {
+            "name": "keyword",
+            "type": "string",
+            "required": true,
+            "trim": true
+          },
+          {
+            "name": "page",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295",
+            "default": 1
+          },
+          {
+            "name": "order",
+            "type": "string",
+            "required": false,
+            "default": "totalrank",
+            "enum": [
+              "totalrank",
+              "click",
+              "pubdate",
+              "dm",
+              "stow",
+              "scores",
+              "attention",
+              "online",
+              "live_time",
+              "0",
+              "fans",
+              "level"
+            ]
+          },
+          {
+            "name": "duration",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": 4,
+            "default": 0
+          },
+          {
+            "name": "tids",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": "4294967295"
+          }
+        ],
+        "fixture": "contracts/search/read/video/contract.json"
+      }
+    ]
+  },
+  {
+    "name": "user",
+    "specs": [
+      {
+        "contract": "user.album_count",
+        "domain": "user",
+        "accessor": "user",
+        "method": "albumCount",
+        "goMethod": "AlbumCount",
+        "paramType": "AlbumCountParams",
+        "model": "user.AlbumCount",
+        "url": "https://api.vc.bilibili.com/link_draw/v1/doc/upload_count",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "uid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/user/public-read/album-count/contract.json"
+      },
+      {
+        "contract": "user.bangumi_follow_list",
+        "domain": "user",
+        "accessor": "user",
+        "method": "bangumiFollowList",
+        "goMethod": "BangumiFollowList",
+        "paramType": "BangumiFollowListParams",
+        "model": "user.BangumiFollowList",
+        "url": "https://api.bilibili.com/x/space/bangumi/follow/list",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "vmid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "type",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": "255",
+            "default": 1,
+            "enum": [
+              1,
+              2
+            ]
+          },
+          {
+            "name": "pn",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295",
+            "default": 1
+          },
+          {
+            "name": "ps",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": 30,
+            "default": 15
+          }
+        ],
+        "fixture": "contracts/user/public-read/bangumi-follow-list/contract.json"
+      },
+      {
+        "contract": "user.card",
+        "domain": "user",
+        "accessor": "user",
+        "method": "card",
+        "goMethod": "Card",
+        "paramType": "CardParams",
+        "model": "user.CardProfile",
+        "url": "https://api.bilibili.com/x/web-interface/card",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "photo",
+            "type": "boolean",
+            "required": false,
+            "booleanEncoding": "literal"
+          },
+          {
+            "name": "mid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/user/public-read/card/contract.json"
+      },
+      {
+        "contract": "user.cards",
+        "domain": "user",
+        "accessor": "user",
+        "method": "cards",
+        "goMethod": "Cards",
+        "paramType": "CardsParams",
+        "model": "[]user.BatchCard",
+        "url": "https://api.vc.bilibili.com/account/v1/user/cards",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "uids",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "fixture": "contracts/user/public-read/cards/contract.json"
+      },
+      {
+        "contract": "user.follow_tags",
+        "domain": "user",
+        "accessor": "user",
+        "method": "followTags",
+        "goMethod": "FollowTags",
+        "model": "[]user.FollowTag",
+        "url": "https://api.bilibili.com/x/relation/tags",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [],
+        "fixture": "contracts/user/relation-read/follow-tags/contract.json"
+      },
+      {
+        "contract": "user.followers",
+        "domain": "user",
+        "accessor": "user",
+        "method": "followers",
+        "goMethod": "Followers",
+        "paramType": "FollowersParams",
+        "model": "user.Followers",
+        "url": "https://api.bilibili.com/x/relation/fans",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "ps",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295"
+          },
+          {
+            "name": "pn",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295"
+          },
+          {
+            "name": "offset",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "last_access_ts",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": "18446744073709551615"
+          },
+          {
+            "name": "from",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "vmid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/user/relation-read/followers/contract.json"
+      },
+      {
+        "contract": "user.followings",
+        "domain": "user",
+        "accessor": "user",
+        "method": "followings",
+        "goMethod": "Followings",
+        "paramType": "FollowingsParams",
+        "model": "user.Followings",
+        "url": "https://api.bilibili.com/x/relation/followings",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "order_type",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "ps",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295"
+          },
+          {
+            "name": "pn",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295"
+          },
+          {
+            "name": "vmid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/user/relation-read/followings/contract.json"
+      },
+      {
+        "contract": "user.infos",
+        "domain": "user",
+        "accessor": "user",
+        "method": "infos",
+        "goMethod": "Infos",
+        "paramType": "InfosParams",
+        "model": "[]user.BatchInfo",
+        "url": "https://api.vc.bilibili.com/x/im/user_infos",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "uids",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "fixture": "contracts/user/public-read/infos/contract.json"
+      },
+      {
+        "contract": "user.medal_wall",
+        "domain": "user",
+        "accessor": "user",
+        "method": "medalWall",
+        "goMethod": "MedalWall",
+        "paramType": "MedalWallParams",
+        "model": "user.MedalWall",
+        "url": "https://api.live.bilibili.com/xlive/web-ucenter/user/MedalWall",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "target_id",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/user/public-read/medal-wall/contract.json"
+      },
+      {
+        "contract": "user.name_to_uid",
+        "domain": "user",
+        "accessor": "user",
+        "method": "nameToUID",
+        "goMethod": "NameToUID",
+        "paramType": "NameToUIDParams",
+        "model": "user.NameToUID",
+        "url": "https://api.bilibili.com/x/polymer/web-dynamic/v1/name-to-uid",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "names",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "fixture": "contracts/user/public-read/name-to-uid/contract.json"
+      },
+      {
+        "contract": "user.nav_stat",
+        "domain": "user",
+        "accessor": "user",
+        "method": "navStat",
+        "goMethod": "NavStat",
+        "paramType": "NavStatParams",
+        "model": "user.NavStat",
+        "url": "https://api.bilibili.com/x/space/navnum",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "mid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/user/public-read/nav-stat/contract.json"
+      },
+      {
+        "contract": "user.relation_stat",
+        "domain": "user",
+        "accessor": "user",
+        "method": "relationStat",
+        "goMethod": "RelationStat",
+        "paramType": "RelationStatParams",
+        "model": "user.RelationStat",
+        "url": "https://api.bilibili.com/x/relation/stat",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "vmid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/user/public-read/relation-stat/contract.json"
+      },
+      {
+        "contract": "user.space_info",
+        "domain": "user",
+        "accessor": "user",
+        "method": "spaceInfo",
+        "goMethod": "SpaceInfo",
+        "paramType": "SpaceParams",
+        "model": "user.SpaceProfile",
+        "url": "https://api.bilibili.com/x/space/wbi/acc/info",
+        "httpMethod": "GET",
+        "wbi": true,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "mid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/user/public-read/space-info/contract.json"
+      },
+      {
+        "contract": "user.space_notice",
+        "domain": "user",
+        "accessor": "user",
+        "method": "spaceNotice",
+        "goMethod": "SpaceNotice",
+        "paramType": "SpaceNoticeParams",
+        "model": "user.SpaceNotice",
+        "url": "https://api.bilibili.com/x/space/notice",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "mid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/user/public-read/space-notice/contract.json"
+      },
+      {
+        "contract": "user.up_stat",
+        "domain": "user",
+        "accessor": "user",
+        "method": "upStat",
+        "goMethod": "UpStat",
+        "paramType": "UpStatParams",
+        "model": "user.UpStat",
+        "url": "https://api.bilibili.com/x/space/upstat",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "mid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/user/public-read/up-stat/contract.json"
+      },
+      {
+        "contract": "user.uploaded_videos",
+        "domain": "user",
+        "accessor": "user",
+        "method": "uploadedVideos",
+        "goMethod": "UploadedVideos",
+        "paramType": "UploadedVideosParams",
+        "model": "user.UploadedVideos",
+        "url": "https://api.bilibili.com/x/space/wbi/arc/search",
+        "httpMethod": "GET",
+        "wbi": true,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "mid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "order",
+            "type": "string",
+            "required": false,
+            "default": "pubdate",
+            "enum": [
+              "pubdate",
+              "click",
+              "stow"
+            ]
+          },
+          {
+            "name": "tid",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": "18446744073709551615",
+            "default": 0
+          },
+          {
+            "name": "pn",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295",
+            "default": 1
+          },
+          {
+            "name": "ps",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295",
+            "default": 30
+          },
+          {
+            "name": "keyword",
+            "type": "string",
+            "required": false,
+            "trim": true
+          }
+        ],
+        "fixture": "contracts/user/public-read/uploaded-videos/contract.json"
+      }
+    ]
+  },
+  {
+    "name": "video",
+    "specs": [
+      {
+        "contract": "video.ai_summary",
+        "domain": "video",
+        "accessor": "video",
+        "method": "aiSummary",
+        "goMethod": "AISummary",
+        "paramType": "AISummaryParams",
+        "model": "video.AISummary",
+        "url": "https://api.bilibili.com/x/web-interface/view/conclusion/get",
+        "httpMethod": "GET",
+        "wbi": true,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "aid",
+            "type": "integer",
+            "required": false,
+            "min": 1
+          },
+          {
+            "name": "bvid",
+            "type": "string",
+            "required": false,
+            "format": "bvid"
+          },
+          {
+            "name": "cid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "up_mid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/video/player-read/ai-summary/contract.json",
+        "videoIdentifier": true
+      },
+      {
+        "contract": "video.collection.home_seasons_series",
+        "domain": "video",
+        "accessor": "video",
+        "method": "homeSeasonsSeries",
+        "goMethod": "HomeSeasonsSeries",
+        "paramType": "HomeSeasonsSeriesParams",
+        "model": "video.SeasonsSeries",
+        "url": "https://api.bilibili.com/x/polymer/web-space/home/seasons_series",
+        "httpMethod": "GET",
+        "wbi": true,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "mid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "page_num",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "default": 1
+          },
+          {
+            "name": "page_size",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "default": 20
+          }
+        ],
+        "fixture": "contracts/video/collection-read/home-seasons-series/contract.json"
+      },
+      {
+        "contract": "video.collection.seasons_archives_list",
+        "domain": "video",
+        "accessor": "video",
+        "method": "seasonsArchives",
+        "goMethod": "SeasonsArchives",
+        "paramType": "SeasonsArchivesParams",
+        "model": "video.SeasonsArchives",
+        "url": "https://api.bilibili.com/x/polymer/web-space/seasons_archives_list",
+        "httpMethod": "GET",
+        "wbi": true,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "mid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "season_id",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "page_num",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "default": 1
+          },
+          {
+            "name": "page_size",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "default": 20
+          },
+          {
+            "name": "sort_reverse",
+            "type": "boolean",
+            "required": false,
+            "booleanEncoding": "literal"
+          }
+        ],
+        "fixture": "contracts/video/collection-read/seasons-archives-list/contract.json"
+      },
+      {
+        "contract": "video.collection.seasons_series_list",
+        "domain": "video",
+        "accessor": "video",
+        "method": "seasonsSeries",
+        "goMethod": "SeasonsSeries",
+        "paramType": "SeasonsSeriesParams",
+        "model": "video.SeasonsSeries",
+        "url": "https://api.bilibili.com/x/polymer/web-space/seasons_series_list",
+        "httpMethod": "GET",
+        "wbi": true,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "mid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "page_num",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "18446744073709551615",
+            "default": 1
+          },
+          {
+            "name": "page_size",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "18446744073709551615",
+            "default": 20
+          }
+        ],
+        "fixture": "contracts/video/collection-read/seasons-series-list/contract.json"
+      },
+      {
+        "contract": "video.collection.series_archives",
+        "domain": "video",
+        "accessor": "video",
+        "method": "seriesArchives",
+        "goMethod": "SeriesArchives",
+        "paramType": "SeriesArchivesParams",
+        "model": "video.SeriesArchives",
+        "url": "https://api.bilibili.com/x/series/archives",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "mid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "series_id",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "18446744073709551615"
+          },
+          {
+            "name": "only_normal",
+            "type": "boolean",
+            "required": false,
+            "booleanEncoding": "literal"
+          },
+          {
+            "name": "sort",
+            "type": "string",
+            "required": false,
+            "enum": [
+              "asc",
+              "desc"
+            ]
+          },
+          {
+            "name": "pn",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "18446744073709551615"
+          },
+          {
+            "name": "ps",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "18446744073709551615"
+          }
+        ],
+        "fixture": "contracts/video/collection-read/series-archives/contract.json"
+      },
+      {
+        "contract": "video.collection.series_info",
+        "domain": "video",
+        "accessor": "video",
+        "method": "seriesInfo",
+        "goMethod": "SeriesInfo",
+        "paramType": "SeriesInfoParams",
+        "model": "video.SeriesInfo",
+        "url": "https://api.bilibili.com/x/series/series",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "series_id",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "18446744073709551615"
+          }
+        ],
+        "fixture": "contracts/video/collection-read/series-info/contract.json"
+      },
+      {
+        "contract": "video.desc",
+        "domain": "video",
+        "accessor": "video",
+        "method": "desc",
+        "goMethod": "Desc",
+        "paramType": "DescParams",
+        "model": "string",
+        "url": "https://api.bilibili.com/x/web-interface/archive/desc",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "aid",
+            "type": "integer",
+            "required": false,
+            "min": 1
+          },
+          {
+            "name": "bvid",
+            "type": "string",
+            "required": false,
+            "format": "bvid"
+          }
+        ],
+        "fixture": "contracts/video/info-read/desc/contract.json",
+        "videoIdentifier": true
+      },
+      {
+        "contract": "video.detail",
+        "domain": "video",
+        "accessor": "video",
+        "method": "detail",
+        "goMethod": "Detail",
+        "paramType": "DetailParams",
+        "model": "video.Detail",
+        "url": "https://api.bilibili.com/x/web-interface/view/detail",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "aid",
+            "type": "integer",
+            "required": false,
+            "min": 1
+          },
+          {
+            "name": "bvid",
+            "type": "string",
+            "required": false,
+            "format": "bvid"
+          },
+          {
+            "name": "need_elec",
+            "type": "boolean",
+            "required": false
+          }
+        ],
+        "fixture": "contracts/video/info-read/detail/contract.json",
+        "videoIdentifier": true
+      },
+      {
+        "contract": "video.homepage_recommendations",
+        "domain": "video",
+        "accessor": "video",
+        "method": "homepageRecommendations",
+        "goMethod": "HomepageRecommendations",
+        "paramType": "HomepageRecommendationsParams",
+        "model": "video.HomepageRecommendations",
+        "url": "https://api.bilibili.com/x/web-interface/wbi/index/top/feed/rcmd",
+        "httpMethod": "GET",
+        "wbi": true,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "fresh_type",
+            "type": "string",
+            "required": false,
+            "default": "4",
+            "fixed": true
+          },
+          {
+            "name": "ps",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "default": 12,
+            "max": 30
+          },
+          {
+            "name": "fresh_idx",
+            "type": "integer",
+            "required": false,
+            "default": 1,
+            "min": 1
+          },
+          {
+            "name": "fresh_idx_1h",
+            "type": "integer",
+            "required": false,
+            "default": 1,
+            "min": 1
+          },
+          {
+            "name": "brush",
+            "type": "integer",
+            "required": false,
+            "default": 1,
+            "min": 1
+          },
+          {
+            "name": "fetch_row",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "default": 1,
+            "max": "4294967295"
+          }
+        ],
+        "fixture": "contracts/video/player-read/homepage-recommendations/contract.json"
+      },
+      {
+        "contract": "video.interactive_video_info",
+        "domain": "video",
+        "accessor": "video",
+        "method": "interactiveVideoInfo",
+        "goMethod": "InteractiveVideoInfo",
+        "paramType": "InteractiveInfoParams",
+        "model": "video.InteractiveInfo",
+        "url": "https://api.bilibili.com/x/stein/edgeinfo_v2",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "aid",
+            "type": "integer",
+            "required": false,
+            "min": 1
+          },
+          {
+            "name": "bvid",
+            "type": "string",
+            "required": false,
+            "format": "bvid"
+          },
+          {
+            "name": "graph_version",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "18446744073709551615"
+          },
+          {
+            "name": "edge_id",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "18446744073709551615"
+          }
+        ],
+        "fixture": "contracts/video/player-read/interactive-info/contract.json",
+        "videoIdentifier": true
+      },
+      {
+        "contract": "video.online_total",
+        "domain": "video",
+        "accessor": "video",
+        "method": "onlineTotal",
+        "goMethod": "OnlineTotal",
+        "paramType": "OnlineTotalParams",
+        "model": "video.OnlineTotal",
+        "url": "https://api.bilibili.com/x/player/online/total",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "aid",
+            "type": "integer",
+            "required": false,
+            "min": 1
+          },
+          {
+            "name": "bvid",
+            "type": "string",
+            "required": false,
+            "format": "bvid"
+          },
+          {
+            "name": "cid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/video/player-read/online-total/contract.json",
+        "videoIdentifier": true
+      },
+      {
+        "contract": "video.pagelist",
+        "domain": "video",
+        "accessor": "video",
+        "method": "pageList",
+        "goMethod": "PageList",
+        "paramType": "PageListParams",
+        "model": "[]video.Page",
+        "url": "https://api.bilibili.com/x/player/pagelist",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "aid",
+            "type": "integer",
+            "required": false,
+            "min": 1
+          },
+          {
+            "name": "bvid",
+            "type": "string",
+            "required": false,
+            "format": "bvid"
+          }
+        ],
+        "fixture": "contracts/video/info-read/pagelist/contract.json",
+        "videoIdentifier": true
+      },
+      {
+        "contract": "video.play_url",
+        "domain": "video",
+        "accessor": "video",
+        "method": "playURL",
+        "goMethod": "PlayURL",
+        "paramType": "PlayURLParams",
+        "model": "video.PlayURL",
+        "url": "https://api.bilibili.com/x/player/wbi/playurl",
+        "httpMethod": "GET",
+        "wbi": true,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "cid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "aid",
+            "type": "integer",
+            "required": false,
+            "min": 1
+          },
+          {
+            "name": "bvid",
+            "type": "string",
+            "required": false,
+            "format": "bvid"
+          },
+          {
+            "name": "qn",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": "18446744073709551615"
+          },
+          {
+            "name": "fnval",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": "18446744073709551615"
+          },
+          {
+            "name": "fnver",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": "18446744073709551615"
+          },
+          {
+            "name": "fourk",
+            "type": "boolean",
+            "required": false
+          },
+          {
+            "name": "platform",
+            "type": "string",
+            "required": false,
+            "default": "pc"
+          },
+          {
+            "name": "high_quality",
+            "type": "boolean",
+            "required": false
+          },
+          {
+            "name": "try_look",
+            "type": "boolean",
+            "required": false
+          }
+        ],
+        "fixture": "contracts/video/playurl/play-url/contract.json",
+        "videoIdentifier": true,
+        "aidKey": "avid"
+      },
+      {
+        "contract": "video.player_info_v2",
+        "domain": "video",
+        "accessor": "video",
+        "method": "playerInfoV2",
+        "goMethod": "PlayerInfoV2",
+        "paramType": "PlayerInfoParams",
+        "model": "video.PlayerInfo",
+        "url": "https://api.bilibili.com/x/player/wbi/v2",
+        "httpMethod": "GET",
+        "wbi": true,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "aid",
+            "type": "integer",
+            "required": false,
+            "min": 1
+          },
+          {
+            "name": "bvid",
+            "type": "string",
+            "required": false,
+            "format": "bvid"
+          },
+          {
+            "name": "cid",
+            "type": "integer",
+            "required": true,
+            "min": 1
+          },
+          {
+            "name": "season_id",
+            "type": "integer",
+            "required": false,
+            "min": 1
+          },
+          {
+            "name": "ep_id",
+            "type": "integer",
+            "required": false,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/video/player-read/player-info-v2/contract.json",
+        "videoIdentifier": true
+      },
+      {
+        "contract": "video.related_videos",
+        "domain": "video",
+        "accessor": "video",
+        "method": "relatedVideos",
+        "goMethod": "RelatedVideos",
+        "paramType": "RelatedParams",
+        "model": "[]video.RelatedVideo",
+        "url": "https://api.bilibili.com/x/web-interface/archive/related",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "aid",
+            "type": "integer",
+            "required": false,
+            "min": 1
+          },
+          {
+            "name": "bvid",
+            "type": "string",
+            "required": false,
+            "format": "bvid"
+          }
+        ],
+        "fixture": "contracts/video/player-read/related-videos/contract.json",
+        "videoIdentifier": true
+      },
+      {
+        "contract": "video.tags",
+        "domain": "video",
+        "accessor": "video",
+        "method": "tags",
+        "goMethod": "Tags",
+        "paramType": "TagsParams",
+        "model": "[]video.VideoTag",
+        "url": "https://api.bilibili.com/x/web-interface/view/detail/tag",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "aid",
+            "type": "integer",
+            "required": false,
+            "min": 1
+          },
+          {
+            "name": "bvid",
+            "type": "string",
+            "required": false,
+            "format": "bvid"
+          },
+          {
+            "name": "cid",
+            "type": "integer",
+            "required": false,
+            "min": 1
+          }
+        ],
+        "fixture": "contracts/video/player-read/tags/contract.json",
+        "videoIdentifier": true
+      },
+      {
+        "contract": "video.view",
+        "domain": "video",
+        "accessor": "video",
+        "method": "view",
+        "goMethod": "View",
+        "paramType": "ViewParams",
+        "model": "video.View",
+        "url": "https://api.bilibili.com/x/web-interface/view",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "aid",
+            "type": "integer",
+            "required": false,
+            "min": 1
+          },
+          {
+            "name": "bvid",
+            "type": "string",
+            "required": false,
+            "format": "bvid"
+          }
+        ],
+        "fixture": "contracts/video/info-read/view/contract.json",
+        "videoIdentifier": true
+      }
+    ]
+  },
+  {
+    "name": "videoranking",
+    "specs": [
+      {
+        "contract": "video_ranking.popular_list",
+        "domain": "videoranking",
+        "accessor": "videoRanking",
+        "method": "popularList",
+        "goMethod": "PopularList",
+        "paramType": "PopularListParams",
+        "model": "videoranking.PopularList",
+        "url": "https://api.bilibili.com/x/web-interface/popular",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "pn",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295"
+          },
+          {
+            "name": "ps",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295"
+          }
+        ],
+        "fixture": "contracts/video_ranking/read/popular-list/contract.json"
+      },
+      {
+        "contract": "video_ranking.popular_precious",
+        "domain": "videoranking",
+        "accessor": "videoRanking",
+        "method": "precious",
+        "goMethod": "Precious",
+        "model": "videoranking.PreciousVideos",
+        "url": "https://api.bilibili.com/x/web-interface/popular/precious",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [],
+        "fixture": "contracts/video_ranking/read/popular-precious/contract.json"
+      },
+      {
+        "contract": "video_ranking.popular_series_list",
+        "domain": "videoranking",
+        "accessor": "videoRanking",
+        "method": "popularSeriesList",
+        "goMethod": "PopularSeriesList",
+        "model": "videoranking.PopularSeriesList",
+        "url": "https://api.bilibili.com/x/web-interface/popular/series/list",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [],
+        "fixture": "contracts/video_ranking/read/popular-series-list/contract.json"
+      },
+      {
+        "contract": "video_ranking.popular_series_one",
+        "domain": "videoranking",
+        "accessor": "videoRanking",
+        "method": "popularSeries",
+        "goMethod": "PopularSeries",
+        "paramType": "PopularSeriesParams",
+        "model": "videoranking.PopularSeries",
+        "url": "https://api.bilibili.com/x/web-interface/popular/series/one",
+        "httpMethod": "GET",
+        "wbi": true,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "number",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "4294967295"
+          }
+        ],
+        "fixture": "contracts/video_ranking/read/popular-series-one/contract.json"
+      },
+      {
+        "contract": "video_ranking.ranking_list",
+        "domain": "videoranking",
+        "accessor": "videoRanking",
+        "method": "rankingList",
+        "goMethod": "RankingList",
+        "paramType": "RankingListParams",
+        "model": "videoranking.RankingList",
+        "url": "https://api.bilibili.com/x/web-interface/ranking/v2",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "rid",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": "4294967295"
+          },
+          {
+            "name": "type",
+            "type": "string",
+            "required": false,
+            "enum": [
+              "all",
+              "rookie",
+              "origin"
+            ]
+          }
+        ],
+        "fixture": "contracts/video_ranking/read/ranking-list/contract.json"
+      },
+      {
+        "contract": "video_ranking.region_dynamic",
+        "domain": "videoranking",
+        "accessor": "videoRanking",
+        "method": "regionDynamic",
+        "goMethod": "RegionDynamic",
+        "paramType": "RegionDynamicParams",
+        "model": "videoranking.RegionArchives",
+        "url": "https://api.bilibili.com/x/web-interface/dynamic/region",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "rid",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "4294967295"
+          },
+          {
+            "name": "pn",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295"
+          },
+          {
+            "name": "ps",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295"
+          }
+        ],
+        "fixture": "contracts/video_ranking/read/region-dynamic/contract.json"
+      },
+      {
+        "contract": "video_ranking.region_newlist",
+        "domain": "videoranking",
+        "accessor": "videoRanking",
+        "method": "regionNewList",
+        "goMethod": "RegionNewList",
+        "paramType": "RegionNewListParams",
+        "model": "videoranking.RegionArchives",
+        "url": "https://api.bilibili.com/x/web-interface/newlist",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "rid",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "4294967295"
+          },
+          {
+            "name": "type",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": "4294967295"
+          },
+          {
+            "name": "pn",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295"
+          },
+          {
+            "name": "ps",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295"
+          }
+        ],
+        "fixture": "contracts/video_ranking/read/region-newlist/contract.json"
+      },
+      {
+        "contract": "video_ranking.region_newlist_rank",
+        "domain": "videoranking",
+        "accessor": "videoRanking",
+        "method": "regionNewListRank",
+        "goMethod": "RegionNewListRank",
+        "paramType": "RegionNewListRankParams",
+        "model": "videoranking.NewListRank",
+        "url": "https://api.bilibili.com/x/web-interface/newlist_rank",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "search_type",
+            "type": "string",
+            "required": false,
+            "default": "video",
+            "fixed": true
+          },
+          {
+            "name": "view_type",
+            "type": "string",
+            "required": false,
+            "default": "hot_rank",
+            "fixed": true
+          },
+          {
+            "name": "cate_id",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "4294967295"
+          },
+          {
+            "name": "pagesize",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "4294967295"
+          },
+          {
+            "name": "time_from",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "time_to",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "order",
+            "type": "string",
+            "required": false,
+            "enum": [
+              "click",
+              "scores",
+              "pubdate"
+            ]
+          },
+          {
+            "name": "page",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295"
+          }
+        ],
+        "fixture": "contracts/video_ranking/read/region-newlist-rank/contract.json"
+      },
+      {
+        "contract": "video_ranking.region_tag_dynamic",
+        "domain": "videoranking",
+        "accessor": "videoRanking",
+        "method": "regionTagDynamic",
+        "goMethod": "RegionTagDynamic",
+        "paramType": "RegionTagDynamicParams",
+        "model": "videoranking.RegionArchives",
+        "url": "https://api.bilibili.com/x/web-interface/dynamic/tag",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "rid",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "4294967295"
+          },
+          {
+            "name": "tag_id",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "18446744073709551615"
+          },
+          {
+            "name": "pn",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295"
+          },
+          {
+            "name": "ps",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295"
+          }
+        ],
+        "fixture": "contracts/video_ranking/read/region-tag-dynamic/contract.json"
+      }
+    ]
+  },
+  {
+    "name": "vip",
+    "specs": [
+      {
+        "contract": "vip.center_info",
+        "domain": "vip",
+        "accessor": "vip",
+        "method": "center",
+        "goMethod": "Center",
+        "paramType": "CenterParams",
+        "model": "vip.Center",
+        "url": "https://api.bilibili.com/x/vip/web/vip_center/combine",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "build",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": "4294967295",
+            "default": 0
+          }
+        ],
+        "fixture": "contracts/vip/read/center-info/contract.json"
+      }
+    ]
+  },
+  {
+    "name": "wallet",
+    "specs": [
+      {
+        "contract": "wallet.info",
+        "domain": "wallet",
+        "accessor": "wallet",
+        "method": "info",
+        "goMethod": "Info",
+        "paramType": "InfoParams",
+        "model": "wallet.Info",
+        "url": "https://pay.bilibili.com/paywallet/wallet/getUserWallet",
+        "httpMethod": "POST",
+        "bodyType": "json",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "platformType",
+            "type": "integer",
+            "required": false,
+            "default": 3,
+            "min": 1
+          },
+          {
+            "name": "timestamp",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "9223372036854775807"
+          },
+          {
+            "name": "traceId",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "9223372036854775807"
+          },
+          {
+            "name": "version",
+            "type": "string",
+            "required": false,
+            "default": "1.0"
+          }
+        ],
+        "fixture": "contracts/wallet/read/info/contract.json",
+        "csrf": "required"
+      }
+    ]
+  },
+  {
+    "name": "webwidget",
+    "specs": [
+      {
+        "contract": "web_widget.header_page",
+        "domain": "webwidget",
+        "accessor": "webWidget",
+        "method": "headerPage",
+        "goMethod": "HeaderPage",
+        "paramType": "HeaderPageParams",
+        "model": "webwidget.HeaderData",
+        "url": "https://api.bilibili.com/x/web-show/page/header",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "resource_id",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "4294967295",
+            "default": 142
+          }
+        ],
+        "fixture": "contracts/web_widget/header-page/contract.json"
+      },
+      {
+        "contract": "web_widget.online",
+        "domain": "webwidget",
+        "accessor": "webWidget",
+        "method": "online",
+        "goMethod": "Online",
+        "model": "webwidget.OnlineData",
+        "url": "https://api.bilibili.com/x/web-interface/online",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [],
+        "fixture": "contracts/web_widget/online/contract.json"
+      },
+      {
+        "contract": "web_widget.region_banner",
+        "domain": "webwidget",
+        "accessor": "webWidget",
+        "method": "regionBanner",
+        "goMethod": "RegionBanner",
+        "paramType": "RegionBannerParams",
+        "model": "webwidget.RegionBannerData",
+        "url": "https://api.bilibili.com/x/web-show/region/banner",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "region_id",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "4294967295"
+          }
+        ],
+        "fixture": "contracts/web_widget/region-banner/contract.json"
+      }
+    ]
+  }
+]

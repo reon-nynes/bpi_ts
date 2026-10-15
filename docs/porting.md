@@ -1,8 +1,8 @@
 # Porting and source provenance
 
 This package ports the promoted surface of
-[bpi-go at add0ff775ef4caff2203d169d15e0d9afe9fb996](https://github.com/Yuelioi/bpi-go/tree/add0ff775ef4caff2203d169d15e0d9afe9fb996):
-27 domains and 206 API contracts. The [API inventory](api.md) maps each contract
+[bpi-go v0.3.1 at 471c3b2b7a8207d51024f15f7117b92f6ebad2aa](https://github.com/Yuelioi/bpi-go/tree/471c3b2b7a8207d51024f15f7117b92f6ebad2aa):
+27 domains and 209 API contracts. The [API inventory](api.md) maps each contract
 to its TypeScript method. All mapped methods execute a request and decode its
 response; the inventory is also checked by the tests.
 
@@ -29,6 +29,13 @@ float32 rounding, missing-field zero values, pointer/null behavior, and custom
 wire decoding. Computed fields excluded by `json:"-"` cannot be injected through
 incoming JSON.
 
+The private-message models require the same non-null identity, cursor, counter,
+and flag fields as upstream's custom decoders. Nullable `last_msg`, historical
+`new_face_version`, and absent message/session lists retain their null values.
+Private sending accepts a typed `text` or `image` union instead of Go's send
+parameter constructors. Sender identity, UUIDv4, timestamp, CSRF fields, and
+the separately signed WBI query are derived by `src/message/private.ts`.
+
 Explicit credentials, HTTPS host restrictions, cookie absorption, hourly WBI
 key caching, and bounded HTTP/XML decoding are retained. Requests capture an
 isolated session before asynchronous signing; a stale response cannot write
@@ -50,8 +57,8 @@ extracted from Go encoders and contract fixtures, then corrected for behaviors
 that require source interpretation in `scripts/adjust-domains.mjs`.
 
 `scripts/models-source.json` contains parsed response schemas, constants, source
-file SHA-256 hashes, and the custom decoder inventory. The snapshot covers 80
-upstream source files, 510 types, and 124 constants. `scripts/models-runtime.ts`
+file SHA-256 hashes, and the custom decoder inventory. The snapshot covers 83
+upstream source files, 519 types, and 127 constants. `scripts/models-runtime.ts`
 is the maintained decoder template.
 
 The following outputs are generated:
@@ -62,7 +69,8 @@ The following outputs are generated:
 
 Change the corresponding snapshot, audited metadata adjustment, or generator
 instead of editing an output by hand. `src/client`, `src/ids`,
-`src/internal/domain.ts`, `src/danmaku/xml.ts`, and `src/login/flows.ts` are
+`src/internal/domain.ts`, `src/danmaku/xml.ts`, `src/login/flows.ts`, and
+`src/message/private.ts` are
 maintained directly.
 
 ## Reproduce from the checked-in snapshots
@@ -83,7 +91,7 @@ regeneration.
 
 ```sh
 git clone https://github.com/Yuelioi/bpi-go.git /path/to/bpi-go
-git -C /path/to/bpi-go checkout add0ff775ef4caff2203d169d15e0d9afe9fb996
+git -C /path/to/bpi-go checkout 471c3b2b7a8207d51024f15f7117b92f6ebad2aa
 node scripts/extract-domains.mjs /path/to/bpi-go
 node scripts/adjust-domains.mjs
 node scripts/generate-domains.mjs
@@ -95,6 +103,11 @@ Both source extraction scripts reject a checkout at another revision. Use a
 clean checkout: commit validation identifies HEAD, and the model snapshot
 records source-file hashes. Extraction copies the upstream MIT license and
 sanitized contract fixtures into this project.
+
+For an upstream update, change the commit in `scripts/upstream/provenance.json`
+first. Both extractors and the domain generator read that pin. Re-extract from
+the new checkout, audit changed encoders and custom decoders, update adjustments
+and runtime helpers, and refresh the counts and revision in README and NOTICE.
 
 ## Verification scope
 

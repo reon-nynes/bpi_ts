@@ -1,9 +1,9 @@
 # bpi-ts
 
 A typed Node.js SDK for the Bilibili HTTP API, ported from
-[Yuelioi/bpi-go](https://github.com/Yuelioi/bpi-go/tree/add0ff775ef4caff2203d169d15e0d9afe9fb996).
-It implements all **206 promoted API contracts across 27 domains**, with 510
-response and supporting types and 124 model constants from the pinned source.
+[Yuelioi/bpi-go](https://github.com/Yuelioi/bpi-go/tree/471c3b2b7a8207d51024f15f7117b92f6ebad2aa).
+It implements all **209 promoted API contracts across 27 domains**, with 519
+response and supporting types and 127 model constants from upstream v0.3.1.
 
 Requires **Node.js 22.12 or later**. The package has no runtime dependencies and
 ships ESM, CommonJS, TypeScript declarations, and domain subpath exports.
@@ -140,6 +140,31 @@ typed comments. `parseDeflateXML()` is exported from `bpi-ts/danmaku` for direct
 bounded decoding. Protobuf endpoints return `Uint8Array` for the caller's
 chosen protobuf decoder.
 
+## Private messages
+
+```ts
+import { SessionUserAndSystem } from 'bpi-ts/message';
+
+const sessions = await client.message.sessions({ session_type: SessionUserAndSystem });
+const history = await client.message.sessionMessages({ talker_id: 1000001, size: 20 });
+const sent = await client.message.send({ receiver_id: 1000001, text: 'Hello' });
+console.log(sessions.has_more, history.min_seqno, sent.msg_key);
+```
+
+Reads do not mark messages as read. Session lists default to type 4 and 100
+items. For history pagination, upstream recommends querying types 1 and 2
+separately and detecting repeated cursors because type 4 can ignore `end_ts`.
+Session timestamps use microseconds; message-history cursors use sequence
+numbers. A session's `last_msg` may be null or absent on the wire.
+
+Sending requires a complete account and CSRF token. Supply exactly one `text`
+or `image` field. Images use the exported `SendImage` shape with `url`, `height`,
+`width`, and `size`; the SDK does not upload images. `receiver_type` defaults
+to 1 and also accepts 2. The client generates a UUIDv4, signs the query with
+WBI, and sends a separate form body. Text preserves whitespace and must fit
+within 2000 UTF-8 bytes after JSON encoding. Sends are not retried. Check for a
+nonzero `msg_key` before treating a response as confirmed delivery.
+
 ## Errors and custom transport
 
 `ParameterError` reports invalid input. `APIError` exposes `code` and
@@ -187,6 +212,6 @@ reproducible generation scripts live under `scripts`. Read
 [porting and regeneration notes](docs/porting.md) before changing generated
 files, and [CONTRIBUTING.md](CONTRIBUTING.md) for the development workflow.
 
-Upstream revision: `add0ff775ef4caff2203d169d15e0d9afe9fb996`.
+Upstream revision: `471c3b2b7a8207d51024f15f7117b92f6ebad2aa`.
 The MIT license and original attribution are preserved in [LICENSE](LICENSE)
 and [NOTICE](NOTICE).

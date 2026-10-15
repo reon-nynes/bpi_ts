@@ -162,5 +162,21 @@ for(const s of specs.filter(s=>s.domain==='danmaku')) {
   if(s.fields.find(f=>f.name==='type')) set(s.contract,'type',{max:255});
 }
 set('live.danmu_info','type',{type:'integer',max:255});
+// Private reads use independent uint64 cursors and a bounded page size.
+for (const name of ['message.sessions','message.session_messages']) {
+  defaults(name,{size:100,mobi_app:'web'});
+  set(name,'size',{type:'integer',min:1,max:100});
+  set(name,'mobi_app',{fixed:true});
+}
+defaults('message.sessions',{session_type:4,sort_rule:2,group_fold:0,unfollow_fold:0});
+set('message.sessions','session_type',{type:'integer',enum:[1,2,4]});
+for (const key of ['sort_rule','group_fold','unfollow_fold']) set('message.sessions',key,{fixed:true});
+for (const key of ['begin_ts','end_ts']) set('message.sessions',key,{type:'integer',min:1,max:'18446744073709551615',required:false});
+defaults('message.session_messages',{session_type:1});
+set('message.session_messages','session_type',{fixed:true});
+set('message.session_messages','talker_id',{type:'integer',min:1,max:'18446744073709551615',required:true});
+for (const key of ['begin_seqno','end_seqno']) set('message.session_messages',key,{type:'integer',min:1,max:'18446744073709551615',required:false});
+// Send signs a query separately from its form and derives sender/device fields.
+Object.assign(select('message.private.send'),{special:'privateSend',fields:[],bodyType:'form',csrf:'required',wbi:true});
 writeFileSync('scripts/upstream/domains.json', JSON.stringify(domains,null,2)+'\n');
 console.log('Applied audited source adjustments');

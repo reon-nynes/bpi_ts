@@ -1,5 +1,6 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 const domains = JSON.parse(readFileSync('scripts/upstream/domains.json','utf8'));
+const { commit } = JSON.parse(readFileSync('scripts/upstream/provenance.json','utf8'));
 const modelType = (value) => {
   value = value.replace(/^\*/, '');
   if (value === '[]byte') return 'Uint8Array';
@@ -17,7 +18,7 @@ for(const domain of domains) {
   classes.push({name:domain.name,className,accessor:domain.specs[0].accessor});
   mkdirSync(`src/${domain.name}`,{recursive:true});
   const params = new Map();
-  for(const spec of domain.specs) if(spec.paramType) {
+  for(const spec of domain.specs) if(spec.paramType && spec.special !== 'privateSend') {
     const existing = params.get(spec.paramType);
     if(existing) {
       for(const f of spec.fields) if(!existing.fields.find(p=>p.name===f.name)) existing.fields.push({...f});
@@ -25,6 +26,7 @@ for(const domain of domains) {
   }
   let parameterText = `// API wire parameter names; derived from the pinned bpi-go encoders.\nimport type { IntegerInput } from '../internal/domain.js';\nexport type { IntegerInput } from '../internal/domain.js';\n`;
   if(domain.name==='video') parameterText += `\nexport type VideoIdentifier = { aid: IntegerInput; bvid?: never } | { bvid: string; aid?: never };\n`;
+  if(domain.name==='message') parameterText += `\nexport type { SendParams, SendImage } from './private.js';\n`;
   for(const [name,spec] of params) {
     const fields = spec.fields.filter(f=>!spec.videoIdentifier||!['aid','bvid'].includes(f.name));
     const body = fields.map(f=>`  ${JSON.stringify(f.name)}${f.required && f.default===undefined?'':'?'}: ${f.fixed&&f.default!==undefined?JSON.stringify(f.default):f.enum?f.enum.map(v=>JSON.stringify(v)).join(' | '):f.type==='integer'?'IntegerInput':f.type==='boolean'?"boolean | 0 | 1 | '0' | '1'":'string'};`).join('\n');
@@ -32,10 +34,11 @@ for(const domain of domains) {
   }
   writeFileSync(`src/${domain.name}/params.ts`,parameterText);
   const login = domain.name==='login';
-  let text = `// Endpoint methods ported from bpi-go add0ff775ef4caff2203d169d15e0d9afe9fb996.\nimport { DomainClient, type CallOptions } from '../internal/domain.js';\nimport type * as Models from './models.js';\nimport { normalizePayload } from './models.js';\nimport type * as Params from './params.js';\nexport * from './models.js';\nexport * from './params.js';\n`;
+  let text = `// Endpoint methods ported from bpi-go ${commit}.\nimport { DomainClient, type CallOptions } from '../internal/domain.js';\nimport type * as Models from './models.js';\nimport { normalizePayload } from './models.js';\nimport type * as Params from './params.js';\nexport * from './models.js';\nexport * from './params.js';\n`;
   if(login) text += `import { LoginFlows } from './flows.js';\nimport type { CoreClient } from '../client/index.js';\nexport * from './flows.js';\n`;
   if(domain.name==='danmaku') text += `export { parseDeflateXML } from './xml.js';\n`;
-  text += `\nexport class ${className} extends ${login?'LoginFlows':'DomainClient'} {\n`;
+  if(domain.name==='message') text += `import { MessageFlows } from './private.js';\n`;
+  text += `\nexport class ${className} extends ${login?'LoginFlows':domain.name==='message'?'MessageFlows':'DomainClient'} {\n`;
   if(login) text += `  private readonly domain: LoginDomain;\n  constructor(core: CoreClient) { super(core); this.domain = new LoginDomain(core); }\n`;
   for(const s of domain.specs) {
     if(s.special) continue;
@@ -60,7 +63,7 @@ root += `\n  constructor(options: ClientOptions = {}) {\n    super(options);\n`;
 for(const c of classes) root += `    this.${c.accessor} = new ${c.className}(this);\n`;
 root += `  }\n}\n\nexport function createClient(options: ClientOptions = {}): Client { return new Client(options); }\n`;
 writeFileSync('src/index.ts',root);
-const docs = ['# API coverage','', 'Ported from bpi-go commit `add0ff775ef4caff2203d169d15e0d9afe9fb996`.','', '| Contract | TypeScript method | Parameters | Response |','| --- | --- | --- | --- |'];
+const docs = ['# API coverage','', `Ported from bpi-go commit \`${commit}\`.`, '', '| Contract | TypeScript method | Parameters | Response |','| --- | --- | --- | --- |'];
 for(const d of domains) for(const s of d.specs) docs.push(`| ${s.contract} | client.${s.accessor}.${s.method} | ${s.paramType??'none'} | ${s.model} |`);
 writeFileSync('docs/api.md',docs.join('\n')+'\n');
 console.log(`Generated ${classes.length} domain clients with ${domains.flatMap(d=>d.specs).length} mapped methods.`);

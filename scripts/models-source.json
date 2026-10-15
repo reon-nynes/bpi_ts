@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "upstream": "https://github.com/Yuelioi/bpi-go",
-  "commit": "add0ff775ef4caff2203d169d15e0d9afe9fb996",
+  "commit": "471c3b2b7a8207d51024f15f7117b92f6ebad2aa",
   "custom_json": {
     "article.CardItem": "Choose VideoCard by aid, LiveCard by room_id, ArticleCard by id; preserve incompatible or unknown objects in raw.",
     "bangumi.Stat": "Use coin/play aliases only when coins/views are absent.",
@@ -13,6 +13,10 @@
     "dynamic.MyInfo": "Decode dyns/following/mid as quoted or numeric int64.",
     "live.LotteryInfo": "Retain undocumented top-level lottery sections in extra.",
     "login.Nav": "Convert guest zero mid and blank uname/face to null; validate nonzero member IDs.",
+    "message.Sessions": "Require non-null page flags; missing or null session_list remains null.",
+    "message.Session": "Require session identity, timestamps, counters and flags; last_msg may be missing or null.",
+    "message.SessionMessages": "Require non-null page flags and sequence boundaries; missing or null messages remains null.",
+    "message.PrivateMessage": "Require message identity, content, sequence, timestamp, status, source and notify_code; preserve unknown message kinds.",
     "user.CardSummary": "Accept either quoted or numeric member IDs with full uint64 validation.",
     "user.SpaceNotice": "Wrap the API string payload as content.",
     "user.NameToUIDItem": "Accept either quoted or numeric uid with full uint64 validation.",
@@ -27924,6 +27928,707 @@
             ]
           },
           "file": "message/message.go"
+        },
+        {
+          "name": "Sessions",
+          "generic": [],
+          "value": {
+            "kind": "struct",
+            "fields": [
+              {
+                "names": [
+                  "SessionList"
+                ],
+                "value": {
+                  "kind": "array",
+                  "length": null,
+                  "value": {
+                    "kind": "named",
+                    "name": "Session",
+                    "args": []
+                  }
+                },
+                "tag": "json:\"session_list\""
+              },
+              {
+                "names": [
+                  "HasMore"
+                ],
+                "value": {
+                  "kind": "named",
+                  "name": "uint32",
+                  "args": []
+                },
+                "tag": "json:\"has_more\""
+              },
+              {
+                "names": [
+                  "IsAddressListEmpty"
+                ],
+                "value": {
+                  "kind": "named",
+                  "name": "uint32",
+                  "args": []
+                },
+                "tag": "json:\"is_address_list_empty\""
+              },
+              {
+                "names": [
+                  "AntiDisturbCleaning"
+                ],
+                "value": {
+                  "kind": "named",
+                  "name": "bool",
+                  "args": []
+                },
+                "tag": "json:\"anti_disturb_cleaning\""
+              },
+              {
+                "names": [
+                  "ShowLevel"
+                ],
+                "value": {
+                  "kind": "named",
+                  "name": "bool",
+                  "args": []
+                },
+                "tag": "json:\"show_level\""
+              }
+            ]
+          },
+          "file": "message/private_models.go"
+        },
+        {
+          "name": "Session",
+          "generic": [],
+          "value": {
+            "kind": "struct",
+            "fields": [
+              {
+                "names": [
+                  "TalkerID"
+                ],
+                "value": {
+                  "kind": "named",
+                  "name": "uint64",
+                  "args": []
+                },
+                "tag": "json:\"talker_id\""
+              },
+              {
+                "names": [
+                  "SessionType"
+                ],
+                "value": {
+                  "kind": "named",
+                  "name": "uint32",
+                  "args": []
+                },
+                "tag": "json:\"session_type\""
+              },
+              {
+                "names": [
+                  "SessionTS"
+                ],
+                "value": {
+                  "kind": "named",
+                  "name": "uint64",
+                  "args": []
+                },
+                "tag": "json:\"session_ts\""
+              },
+              {
+                "names": [
+                  "TopTS"
+                ],
+                "value": {
+                  "kind": "named",
+                  "name": "uint64",
+                  "args": []
+                },
+                "tag": "json:\"top_ts\""
+              },
+              {
+                "names": [
+                  "AckSeqno"
+                ],
+                "value": {
+                  "kind": "named",
+                  "name": "uint64",
+                  "args": []
+                },
+                "tag": "json:\"ack_seqno\""
+              },
+              {
+                "names": [
+                  "AckTS"
+                ],
+                "value": {
+                  "kind": "named",
+                  "name": "uint64",
+                  "args": []
+                },
+                "tag": "json:\"ack_ts\""
+              },
+              {
+                "names": [
+                  "MaxSeqno"
+                ],
+                "value": {
+                  "kind": "named",
+                  "name": "uint64",
+                  "args": []
+                },
+                "tag": "json:\"max_seqno\""
+              },
+              {
+                "names": [
+                  "UnreadCount"
+                ],
+                "value": {
+                  "kind": "named",
+                  "name": "uint32",
+                  "args": []
+                },
+                "tag": "json:\"unread_count\""
+              },
+              {
+                "names": [
+                  "SystemMsgType"
+                ],
+                "value": {
+                  "kind": "named",
+                  "name": "uint32",
+                  "args": []
+                },
+                "tag": "json:\"system_msg_type\""
+              },
+              {
+                "names": [
+                  "IsFollow"
+                ],
+                "value": {
+                  "kind": "named",
+                  "name": "uint32",
+                  "args": []
+                },
+                "tag": "json:\"is_follow\""
+              },
+              {
+                "names": [
+                  "IsDND"
+                ],
+                "value": {
+                  "kind": "named",
+                  "name": "uint32",
+                  "args": []
+                },
+                "tag": "json:\"is_dnd\""
+              },
+              {
+                "names": [
+                  "LastMessage"
+                ],
+                "value": {
+                  "kind": "pointer",
+                  "value": {
+                    "kind": "named",
+                    "name": "PrivateMessage",
+                    "args": []
+                  }
+                },
+                "tag": "json:\"last_msg\""
+              }
+            ]
+          },
+          "file": "message/private_models.go"
+        },
+        {
+          "name": "SessionMessages",
+          "generic": [],
+          "value": {
+            "kind": "struct",
+            "fields": [
+              {
+                "names": [
+                  "Messages"
+                ],
+                "value": {
+                  "kind": "array",
+                  "length": null,
+                  "value": {
+                    "kind": "named",
+                    "name": "PrivateMessage",
+                    "args": []
+                  }
+                },
+                "tag": "json:\"messages\""
+              },
+              {
+                "names": [
+                  "HasMore"
+                ],
+                "value": {
+                  "kind": "named",
+                  "name": "uint32",
+                  "args": []
+                },
+                "tag": "json:\"has_more\""
+              },
+              {
+                "names": [
+                  "MinSeqno"
+                ],
+                "value": {
+                  "kind": "named",
+                  "name": "uint64",
+                  "args": []
+                },
+                "tag": "json:\"min_seqno\""
+              },
+              {
+                "names": [
+                  "MaxSeqno"
+                ],
+                "value": {
+                  "kind": "named",
+                  "name": "uint64",
+                  "args": []
+                },
+                "tag": "json:\"max_seqno\""
+              }
+            ]
+          },
+          "file": "message/private_models.go"
+        },
+        {
+          "name": "PrivateMessage",
+          "generic": [],
+          "value": {
+            "kind": "struct",
+            "fields": [
+              {
+                "names": [
+                  "SenderUID"
+                ],
+                "value": {
+                  "kind": "named",
+                  "name": "uint64",
+                  "args": []
+                },
+                "tag": "json:\"sender_uid\""
+              },
+              {
+                "names": [
+                  "ReceiverID"
+                ],
+                "value": {
+                  "kind": "named",
+                  "name": "uint64",
+                  "args": []
+                },
+                "tag": "json:\"receiver_id\""
+              },
+              {
+                "names": [
+                  "ReceiverType"
+                ],
+                "value": {
+                  "kind": "named",
+                  "name": "uint32",
+                  "args": []
+                },
+                "tag": "json:\"receiver_type\""
+              },
+              {
+                "names": [
+                  "MsgType"
+                ],
+                "value": {
+                  "kind": "named",
+                  "name": "uint32",
+                  "args": []
+                },
+                "tag": "json:\"msg_type\""
+              },
+              {
+                "names": [
+                  "Content"
+                ],
+                "value": {
+                  "kind": "named",
+                  "name": "string",
+                  "args": []
+                },
+                "tag": "json:\"content\""
+              },
+              {
+                "names": [
+                  "MsgSeqno"
+                ],
+                "value": {
+                  "kind": "named",
+                  "name": "uint64",
+                  "args": []
+                },
+                "tag": "json:\"msg_seqno\""
+              },
+              {
+                "names": [
+                  "MsgKey"
+                ],
+                "value": {
+                  "kind": "named",
+                  "name": "uint64",
+                  "args": []
+                },
+                "tag": "json:\"msg_key\""
+              },
+              {
+                "names": [
+                  "Timestamp"
+                ],
+                "value": {
+                  "kind": "named",
+                  "name": "uint64",
+                  "args": []
+                },
+                "tag": "json:\"timestamp\""
+              },
+              {
+                "names": [
+                  "MsgStatus"
+                ],
+                "value": {
+                  "kind": "named",
+                  "name": "uint32",
+                  "args": []
+                },
+                "tag": "json:\"msg_status\""
+              },
+              {
+                "names": [
+                  "MsgSource"
+                ],
+                "value": {
+                  "kind": "named",
+                  "name": "uint32",
+                  "args": []
+                },
+                "tag": "json:\"msg_source\""
+              },
+              {
+                "names": [
+                  "AtUIDs"
+                ],
+                "value": {
+                  "kind": "array",
+                  "length": null,
+                  "value": {
+                    "kind": "named",
+                    "name": "uint64",
+                    "args": []
+                  }
+                },
+                "tag": "json:\"at_uids\""
+              },
+              {
+                "names": [
+                  "NewFaceVersion"
+                ],
+                "value": {
+                  "kind": "pointer",
+                  "value": {
+                    "kind": "named",
+                    "name": "uint32",
+                    "args": []
+                  }
+                },
+                "tag": "json:\"new_face_version\""
+              },
+              {
+                "names": [
+                  "NotifyCode"
+                ],
+                "value": {
+                  "kind": "named",
+                  "name": "string",
+                  "args": []
+                },
+                "tag": "json:\"notify_code\""
+              }
+            ]
+          },
+          "file": "message/private_models.go"
+        },
+        {
+          "name": "SendResult",
+          "generic": [],
+          "value": {
+            "kind": "struct",
+            "fields": [
+              {
+                "names": [
+                  "MsgKey"
+                ],
+                "value": {
+                  "kind": "pointer",
+                  "value": {
+                    "kind": "named",
+                    "name": "uint64",
+                    "args": []
+                  }
+                },
+                "tag": "json:\"msg_key\""
+              },
+              {
+                "names": [
+                  "EInfos"
+                ],
+                "value": {
+                  "kind": "array",
+                  "length": null,
+                  "value": {
+                    "kind": "named",
+                    "name": "EmojiInfo",
+                    "args": []
+                  }
+                },
+                "tag": "json:\"e_infos\""
+              },
+              {
+                "names": [
+                  "MsgContent"
+                ],
+                "value": {
+                  "kind": "pointer",
+                  "value": {
+                    "kind": "named",
+                    "name": "string",
+                    "args": []
+                  }
+                },
+                "tag": "json:\"msg_content\""
+              },
+              {
+                "names": [
+                  "KeyHitInfos"
+                ],
+                "value": {
+                  "kind": "pointer",
+                  "value": {
+                    "kind": "named",
+                    "name": "KeyHitInfos",
+                    "args": []
+                  }
+                },
+                "tag": "json:\"key_hit_infos\""
+              }
+            ]
+          },
+          "file": "message/private_models.go"
+        },
+        {
+          "name": "EmojiInfo",
+          "generic": [],
+          "value": {
+            "kind": "struct",
+            "fields": [
+              {
+                "names": [
+                  "Text"
+                ],
+                "value": {
+                  "kind": "named",
+                  "name": "string",
+                  "args": []
+                },
+                "tag": "json:\"text\""
+              },
+              {
+                "names": [
+                  "URI"
+                ],
+                "value": {
+                  "kind": "named",
+                  "name": "string",
+                  "args": []
+                },
+                "tag": "json:\"uri\""
+              },
+              {
+                "names": [
+                  "Size"
+                ],
+                "value": {
+                  "kind": "named",
+                  "name": "uint32",
+                  "args": []
+                },
+                "tag": "json:\"size\""
+              },
+              {
+                "names": [
+                  "GIFURL"
+                ],
+                "value": {
+                  "kind": "pointer",
+                  "value": {
+                    "kind": "named",
+                    "name": "string",
+                    "args": []
+                  }
+                },
+                "tag": "json:\"gif_url\""
+              }
+            ]
+          },
+          "file": "message/private_models.go"
+        },
+        {
+          "name": "KeyHitInfos",
+          "generic": [],
+          "value": {
+            "kind": "struct",
+            "fields": [
+              {
+                "names": [
+                  "Toast"
+                ],
+                "value": {
+                  "kind": "pointer",
+                  "value": {
+                    "kind": "named",
+                    "name": "string",
+                    "args": []
+                  }
+                },
+                "tag": "json:\"toast\""
+              },
+              {
+                "names": [
+                  "RuleID"
+                ],
+                "value": {
+                  "kind": "pointer",
+                  "value": {
+                    "kind": "named",
+                    "name": "uint64",
+                    "args": []
+                  }
+                },
+                "tag": "json:\"rule_id\""
+              },
+              {
+                "names": [
+                  "HighText"
+                ],
+                "value": {
+                  "kind": "array",
+                  "length": null,
+                  "value": {
+                    "kind": "named",
+                    "name": "json.RawMessage",
+                    "args": []
+                  }
+                },
+                "tag": "json:\"high_text\""
+              }
+            ]
+          },
+          "file": "message/private_models.go"
+        },
+        {
+          "name": "Image",
+          "generic": [],
+          "value": {
+            "kind": "struct",
+            "fields": [
+              {
+                "names": [
+                  "URL"
+                ],
+                "value": {
+                  "kind": "named",
+                  "name": "string",
+                  "args": []
+                },
+                "tag": "json:\"url\""
+              },
+              {
+                "names": [
+                  "Height"
+                ],
+                "value": {
+                  "kind": "named",
+                  "name": "uint64",
+                  "args": []
+                },
+                "tag": "json:\"height\""
+              },
+              {
+                "names": [
+                  "Width"
+                ],
+                "value": {
+                  "kind": "named",
+                  "name": "uint64",
+                  "args": []
+                },
+                "tag": "json:\"width\""
+              },
+              {
+                "names": [
+                  "ImageType"
+                ],
+                "value": {
+                  "kind": "pointer",
+                  "value": {
+                    "kind": "named",
+                    "name": "string",
+                    "args": []
+                  }
+                },
+                "tag": "json:\"imageType\""
+              },
+              {
+                "names": [
+                  "Original"
+                ],
+                "value": {
+                  "kind": "pointer",
+                  "value": {
+                    "kind": "named",
+                    "name": "uint64",
+                    "args": []
+                  }
+                },
+                "tag": "json:\"original\""
+              },
+              {
+                "names": [
+                  "Size"
+                ],
+                "value": {
+                  "kind": "named",
+                  "name": "float64",
+                  "args": []
+                },
+                "tag": "json:\"size\""
+              }
+            ]
+          },
+          "file": "message/private_models.go"
+        },
+        {
+          "name": "SessionListType",
+          "generic": [],
+          "value": {
+            "kind": "named",
+            "name": "uint32",
+            "args": []
+          },
+          "file": "message/private_params.go"
         }
       ],
       "constants": [
@@ -27950,6 +28655,24 @@
           "type": "SingleUnreadType",
           "value": 3,
           "file": "message/message.go"
+        },
+        {
+          "name": "SessionUserAndSystem",
+          "type": "SessionListType",
+          "value": 1,
+          "file": "message/private_params.go"
+        },
+        {
+          "name": "SessionUnfollowed",
+          "type": "SessionListType",
+          "value": 2,
+          "file": "message/private_params.go"
+        },
+        {
+          "name": "SessionAll",
+          "type": "SessionListType",
+          "value": 4,
+          "file": "message/private_params.go"
         }
       ]
     },
@@ -42955,6 +43678,18 @@
       "sha256": "10cbbaf55a7cecf89afdd2339f699c97a95e5c32158c5e62710f053c49b52c9e"
     },
     {
+      "path": "message/private_client.go",
+      "sha256": "6a70411be4dbf8b26af07b213e475115e8f10896b609586461ed5a77e8b9d0d4"
+    },
+    {
+      "path": "message/private_models.go",
+      "sha256": "cf7cea55df5ea83f486baacac3af99893779768786ff63594b10dc72abe0f6fc"
+    },
+    {
+      "path": "message/private_params.go",
+      "sha256": "a26eb1c27f7f9acc2e0095afbef7ee820aab297043d0066365a674df9ddcace5"
+    },
+    {
       "path": "misc/client.go",
       "sha256": "fb78c9cc4aa1887fdd30a89f39de6fe3e6e07eee38a2348ff2ee05ddb31b1c5d"
     },
@@ -43611,6 +44346,21 @@
     {
       "name": "message.SingleUnreadParams",
       "file": "message/message.go",
+      "reason": "request parameter type owned by domain params generator"
+    },
+    {
+      "name": "message.SessionsParams",
+      "file": "message/private_params.go",
+      "reason": "request parameter type owned by domain params generator"
+    },
+    {
+      "name": "message.SessionMessagesParams",
+      "file": "message/private_params.go",
+      "reason": "request parameter type owned by domain params generator"
+    },
+    {
+      "name": "message.SendParams",
+      "file": "message/private_params.go",
       "reason": "request parameter type owned by domain params generator"
     },
     {
@@ -44813,6 +45563,18 @@
     {
       "contract": "live.web_heart_beat",
       "model": "live.HeartBeat"
+    },
+    {
+      "contract": "message.private.send",
+      "model": "message.SendResult"
+    },
+    {
+      "contract": "message.session_messages",
+      "model": "message.SessionMessages"
+    },
+    {
+      "contract": "message.sessions",
+      "model": "message.Sessions"
     }
   ]
 }

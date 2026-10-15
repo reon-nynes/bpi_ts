@@ -41,8 +41,12 @@ for (const load of [specifier => import(specifier), specifier => require(specifi
   const root = await load('bpi-ts');
   const core = await load('bpi-ts/client');
   const video = await load('bpi-ts/video');
+  const message = await load('bpi-ts/message');
   assert.equal(root.APIError, core.APIError, 'error identity must survive subpath imports');
   assert.equal(root.VideoClient, video.VideoClient);
+  assert.equal(root.MessageClient, message.MessageClient);
+  const messages = new message.MessageClient(new core.CoreClient({fetch:async() => new Response('{"code":0,"data":{"has_more":0,"is_address_list_empty":0,"anti_disturb_cleaning":false,"show_level":false}}')}));
+  assert.equal((await messages.sessions({session_type:message.SessionAll})).session_list, null);
   const client = new root.Client({fetch:async() => new Response('{"code":0,"data":{"aid":170001,"bvid":"BV1xx411c7mD","title":"Packed SDK"}}')});
   assert.equal((await client.video.view({bvid:'BV1xx411c7mD'})).title, 'Packed SDK');
   const failing = new root.Client({fetch:async() => new Response('{"code":-101,"message":"Login required"}')});
@@ -60,6 +64,7 @@ console.log('Packed ESM, CommonJS, all 29 subpaths, and shared class identities 
 import { Client, type video, type CallOptions } from 'bpi-ts';
 import { CoreClient, APIError } from 'bpi-ts/client';
 import { VideoClient, type View } from 'bpi-ts/video';
+import { MessageClient, SessionAll, type Sessions, type SendResult, type SendParams } from 'bpi-ts/message';
 import { parseMID } from 'bpi-ts/ids';
 const params: video.ViewParams = { aid: 9007199254740993n };
 const options: CallOptions = { signal: AbortSignal.timeout(1000) };
@@ -67,11 +72,22 @@ const result: Promise<View> = new Client().video.view(params, options);
 const narrow: Promise<View> = new VideoClient(new CoreClient()).view({bvid:'BV1xx411c7mD'});
 const member: number | bigint = parseMID('9007199254740993');
 const error: Error = new APIError(-101, 'Login required');
+const messages = new MessageClient(new CoreClient());
+const sessions: Promise<Sessions> = messages.sessions({session_type:SessionAll,begin_ts:9007199254740993n});
+const text: SendParams = {receiver_id:'9007199254740993',text:'Hello'};
+const sent: Promise<SendResult> = messages.send(text,options);
+messages.send({receiver_id:1,image:{url:'https://example.com/image.png',height:100,width:100,size:1}});
+// @ts-expect-error A send requires text or an image.
+messages.send({receiver_id:1});
+// @ts-expect-error A send cannot contain both text and an image.
+messages.send({receiver_id:1,text:'Hello',image:{url:'x',height:1,width:1,size:1}});
+// @ts-expect-error Session type 3 is not supported upstream.
+messages.sessions({session_type:3});
 // @ts-expect-error Exactly one video identifier is required.
 new Client().video.view({aid:1,bvid:'BV1xx411c7mD'});
 // @ts-expect-error A video identifier is required.
 new Client().video.view({});
-void [result, narrow, member, error];
+void [result, narrow, member, error, sessions, sent];
 `;
   writeFileSync(join(temporary, 'consumer.mts'), typeSource);
   writeFileSync(join(temporary, 'consumer.cts'), typeSource);

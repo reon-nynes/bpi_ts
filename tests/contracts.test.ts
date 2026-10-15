@@ -11,14 +11,14 @@ interface Contract {
 }
 const fixtureRoot = join(process.cwd(),'tests','fixtures');
 const load = (path:string) => JSON.parse(readFileSync(join(fixtureRoot,path),'utf8')) as Contract;
-const replace = (value: unknown) => value === '${csrf}' ? 'test-csrf' : value;
+const replace = (value: unknown) => value === '${csrf}' || value === '{{csrf}}' ? 'test-csrf' : value;
 const nav = {code:0,data:{wbi_img:{img_url:'https://i0.hdslb.com/bfs/wbi/7cd084941338484aae1ad9425b84077c.png',sub_url:'https://i0.hdslb.com/bfs/wbi/4932caff0ff746eab6f01bf08b70ac45.png'}}};
 
 describe('complete upstream API coverage', () => {
-  it('exposes all 27 domains and 206 promoted operations', () => {
+  it('exposes all 27 domains and 209 promoted operations', () => {
     const client = new Client();
     expect(new Set(endpoints.map(s=>s.domain)).size).toBe(27);
-    expect(endpoints.length).toBe(206);
+    expect(endpoints.length).toBe(209);
     for(const spec of endpoints) {
       const domain = (client as unknown as Record<string,Record<string,unknown>>)[spec.accessor];
       expect(typeof domain?.[spec.method],spec.contract).toBe('function');
@@ -55,6 +55,12 @@ for(const spec of endpoints) {
       if(spec.headerOnly?.includes('room_id')) params.room_id=new URL(reference.headers!.referer!).pathname.slice(1);
       if(spec.ticket) for(const key of Object.keys(params)) delete params[key];
       if(spec.aidKey && params[spec.aidKey]!==undefined) {params.aid=params[spec.aidKey];delete params[spec.aidKey];}
+      if(spec.special==='privateSend') {
+        for(const key of Object.keys(params)) delete params[key];
+        params.receiver_id=reference.form!['msg[receiver_id]'];
+        params.receiver_type=Number(reference.form!['msg[receiver_type]']);
+        params.text=(JSON.parse(reference.form!['msg[content]']!) as {content:string}).content;
+      }
       const domain = (client as unknown as Record<string,Record<string,(...args:unknown[])=>Promise<unknown>>>)[spec.accessor]!;
       let result:unknown,error:unknown;
       try { result=await domain[spec.method]!(...(spec.paramType?[params]:[])); } catch(e) {error=e;}
@@ -64,15 +70,23 @@ for(const spec of endpoints) {
       const wanted = new URL(reference.url);
       expect(actual.origin+actual.pathname).toBe(wanted.origin+wanted.pathname);
       expect(request.method).toBe(reference.method);
+      const form=reference.form ? new URLSearchParams(await request.text()) : undefined;
+      const expected = (key:string,value:unknown) => {
+        if(spec.special==='privateSend') {
+          if(['w_sender_uid','msg[sender_uid]'].includes(key)) return '1';
+          if(['w_dev_id','msg[dev_id]'].includes(key)) return form!.get('msg[dev_id]');
+          if(key==='msg[timestamp]') return String(new Date('2026-10-03T12:00:00Z').getTime()/1000);
+        }
+        return String(replace(value));
+      };
       for(const header of reference.required_headers ?? []) expect(request.headers.has(header),header).toBe(true);
       for(const [header,value] of Object.entries(reference.headers ?? {})) expect(request.headers.get(header)).toBe(value);
       for(const [key,value] of Object.entries(reference.query ?? {})) {
         if(['w_rid','wts','hexsign','context[ts]'].includes(key)||spec.ticket) continue;
-        expect(actual.searchParams.get(key),key).toBe(String(replace(value)));
+        expect(actual.searchParams.get(key),key).toBe(expected(key,value));
       }
       if(reference.form) {
-        const form=new URLSearchParams(await request.text());
-        for(const [key,value] of Object.entries(reference.form)) expect(form.get(key),key).toBe(String(replace(value)));
+        for(const [key,value] of Object.entries(reference.form)) expect(form!.get(key),key).toBe(expected(key,value));
       }
       if(reference.body) {
         const body=await request.json() as Record<string,unknown>;

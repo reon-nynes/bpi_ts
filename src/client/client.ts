@@ -42,7 +42,7 @@ export interface ClientOptions {
 interface WBIKeyCall { promise: Promise<WBIKeys>; controller: AbortController; waiters: number; settled: boolean }
 
 const defaultUserAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36';
-const sensitiveKeys = new Set(['sessdata', 'dedeuserid', 'dedeuserid__ckmd5', 'bili_jct', 'csrf', 'csrf_token', 'w_rid', 'access_key', 'token', 'cookie', 'qrcode_key', 'refresh_token', 'refresh_csrf', 'access_token']);
+const sensitiveKeys = new Set(['sessdata', 'dedeuserid', 'dedeuserid__ckmd5', 'bili_jct', 'csrf', 'csrf_token', 'w_rid', 'access_key', 'token', 'cookie', 'qrcode_key', 'refresh_token', 'refresh_csrf', 'access_token', 'w_sender_uid', 'w_receiver_id', 'w_dev_id', 'dev_id', 'talker_id']);
 export function sanitizeURL(input: string | URL): string {
   const url = new URL(input); url.username = ''; url.password = '';
   for (const key of [...url.searchParams.keys()]) if (sensitiveKeys.has(key.toLowerCase())) url.searchParams.delete(key);

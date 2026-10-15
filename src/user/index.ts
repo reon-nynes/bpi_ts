@@ -1,4 +1,4 @@
-// Endpoint methods ported from bpi-go add0ff775ef4caff2203d169d15e0d9afe9fb996.
+// Endpoint methods ported from bpi-go 471c3b2b7a8207d51024f15f7117b92f6ebad2aa.
 import { DomainClient, type CallOptions } from '../internal/domain.js';
 import type * as Models from './models.js';
 import { normalizePayload } from './models.js';

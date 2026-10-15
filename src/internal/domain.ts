@@ -23,7 +23,7 @@ export interface EndpointSpec {
   deriveFourK?: boolean;
 }
 
-function integer(field: FieldSpec, value: unknown): number | bigint | string {
+export function integer(field: FieldSpec, value: unknown): number | bigint | string {
   if (typeof value === 'number' && !Number.isSafeInteger(value) ||
     !['number', 'bigint', 'string'].includes(typeof value) ||
     typeof value === 'string' && !/^\d+$/.test(value)) {

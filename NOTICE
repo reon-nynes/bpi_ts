@@ -1,7 +1,7 @@
 bpi-ts is a TypeScript port of bpi-go by YUELI.
 
 Upstream: https://github.com/Yuelioi/bpi-go
-Source revision: add0ff775ef4caff2203d169d15e0d9afe9fb996
+Source revision: 471c3b2b7a8207d51024f15f7117b92f6ebad2aa
 Upstream copyright: Copyright (c) 2026 YUELI
 License: MIT (see LICENSE)
 

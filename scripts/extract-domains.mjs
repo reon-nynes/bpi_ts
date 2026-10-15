@@ -5,7 +5,7 @@ import { execFileSync } from 'node:child_process';
 
 const upstream = process.argv[2];
 if (!upstream) throw new Error('Usage: node scripts/extract-domains.mjs <bpi-go checkout>');
-const revision = 'add0ff775ef4caff2203d169d15e0d9afe9fb996';
+const { commit: revision } = JSON.parse(readFileSync('scripts/upstream/provenance.json', 'utf8'));
 const actualRevision = execFileSync('git', ['-C', upstream, 'rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
 if (actualRevision !== revision) throw new Error(`Expected upstream revision ${revision}, received ${actualRevision}`);
 const json = (file) => JSON.parse(readFileSync(join(upstream, file), 'utf8'));
@@ -205,6 +205,6 @@ mkdirSync('scripts/upstream', { recursive: true });
 writeFileSync('scripts/upstream/domains.json', JSON.stringify(domains, null, 2) + '\n');
 cpSync(join(upstream, 'testdata/contracts'), 'tests/fixtures/contracts', { recursive: true });
 cpSync(join(upstream, 'LICENSE'), 'LICENSE');
-writeFileSync('scripts/upstream/provenance.json', JSON.stringify({ repository: 'https://github.com/Yuelioi/bpi-go', commit: 'add0ff775ef4caff2203d169d15e0d9afe9fb996', contracts: mappings.length, domains: domains.length }, null, 2) + '\n');
+writeFileSync('scripts/upstream/provenance.json', JSON.stringify({ repository: 'https://github.com/Yuelioi/bpi-go', commit: revision, contracts: mappings.length, domains: domains.length }, null, 2) + '\n');
 console.log(`Extracted ${domains.length} domains and ${mappings.length} contracts`);
 console.log(domains.flatMap((d) => d.specs).filter((s) => s.paramType && !s.fields.length).map((s) => `${s.contract}: no fields`).join('\n'));

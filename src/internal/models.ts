@@ -103,6 +103,17 @@ export function createModelNormalizer(
   }
   function prepare(name: string, input: unknown): Record<string, unknown> {
     const value = { ...object(input) };
+    if (domain === 'message') {
+      const required: Record<string, readonly string[]> = {
+        Sessions: ['has_more', 'is_address_list_empty', 'anti_disturb_cleaning', 'show_level'],
+        Session: ['talker_id', 'session_type', 'session_ts', 'top_ts', 'ack_seqno', 'ack_ts', 'max_seqno', 'unread_count', 'system_msg_type', 'is_follow', 'is_dnd'],
+        SessionMessages: ['has_more', 'min_seqno', 'max_seqno'],
+        PrivateMessage: ['sender_uid', 'receiver_id', 'receiver_type', 'msg_type', 'content', 'msg_seqno', 'msg_key', 'timestamp', 'msg_status', 'msg_source', 'notify_code'],
+      };
+      for (const key of required[name] ?? []) {
+        if (!own(value, key) || value[key] === null || value[key] === undefined) throw new TypeError(`missing required message field ${key}`);
+      }
+    }
     if (domain === 'user' && name === 'CardSummary' && own(value, 'mid')) value.mid = ids.parseMID(value.mid as ids.NumericIDInput);
     if (domain === 'user' && name === 'NameToUIDItem' && own(value, 'uid')) value.uid = ids.parseMID(value.uid as ids.NumericIDInput);
     if (domain === 'login' && name === 'Nav') {

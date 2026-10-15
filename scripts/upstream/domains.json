@@ -3956,6 +3956,24 @@
     "name": "message",
     "specs": [
       {
+        "contract": "message.private.send",
+        "domain": "message",
+        "accessor": "message",
+        "method": "send",
+        "goMethod": "Send",
+        "paramType": "SendParams",
+        "model": "message.SendResult",
+        "url": "https://api.vc.bilibili.com/web_im/v1/web_im/send_msg",
+        "httpMethod": "POST",
+        "wbi": true,
+        "mode": "payload",
+        "fields": [],
+        "fixture": "contracts/message/private-write/send/contract.json",
+        "special": "privateSend",
+        "bodyType": "form",
+        "csrf": "required"
+      },
+      {
         "contract": "message.reply_feed",
         "domain": "message",
         "accessor": "message",
@@ -4011,6 +4029,144 @@
           }
         ],
         "fixture": "contracts/message/read/reply-feed/contract.json"
+      },
+      {
+        "contract": "message.session_messages",
+        "domain": "message",
+        "accessor": "message",
+        "method": "sessionMessages",
+        "goMethod": "SessionMessages",
+        "paramType": "SessionMessagesParams",
+        "model": "message.SessionMessages",
+        "url": "https://api.vc.bilibili.com/svr_sync/v1/svr_sync/fetch_session_msgs",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "talker_id",
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "max": "18446744073709551615"
+          },
+          {
+            "name": "session_type",
+            "type": "integer",
+            "required": false,
+            "default": 1,
+            "fixed": true
+          },
+          {
+            "name": "size",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": 100,
+            "default": 100
+          },
+          {
+            "name": "mobi_app",
+            "type": "string",
+            "required": false,
+            "default": "web",
+            "fixed": true
+          },
+          {
+            "name": "begin_seqno",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "18446744073709551615"
+          },
+          {
+            "name": "end_seqno",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "18446744073709551615"
+          }
+        ],
+        "fixture": "contracts/message/private-read/session-messages/contract.json"
+      },
+      {
+        "contract": "message.sessions",
+        "domain": "message",
+        "accessor": "message",
+        "method": "sessions",
+        "goMethod": "Sessions",
+        "paramType": "SessionsParams",
+        "model": "message.Sessions",
+        "url": "https://api.vc.bilibili.com/session_svr/v1/session_svr/get_sessions",
+        "httpMethod": "GET",
+        "wbi": false,
+        "mode": "payload",
+        "fields": [
+          {
+            "name": "session_type",
+            "type": "integer",
+            "required": false,
+            "min": 0,
+            "max": "4294967295",
+            "default": 4,
+            "enum": [
+              1,
+              2,
+              4
+            ]
+          },
+          {
+            "name": "sort_rule",
+            "type": "integer",
+            "required": false,
+            "default": 2,
+            "fixed": true
+          },
+          {
+            "name": "size",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": 100,
+            "default": 100
+          },
+          {
+            "name": "mobi_app",
+            "type": "string",
+            "required": false,
+            "default": "web",
+            "fixed": true
+          },
+          {
+            "name": "group_fold",
+            "type": "integer",
+            "required": false,
+            "default": 0,
+            "fixed": true
+          },
+          {
+            "name": "unfollow_fold",
+            "type": "integer",
+            "required": false,
+            "default": 0,
+            "fixed": true
+          },
+          {
+            "name": "begin_ts",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "18446744073709551615"
+          },
+          {
+            "name": "end_ts",
+            "type": "integer",
+            "required": false,
+            "min": 1,
+            "max": "18446744073709551615"
+          }
+        ],
+        "fixture": "contracts/message/private-read/sessions/contract.json"
       },
       {
         "contract": "message.single_unread",

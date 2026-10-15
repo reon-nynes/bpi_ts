@@ -1,6 +1,6 @@
 # API coverage
 
-Ported from bpi-go commit `add0ff775ef4caff2203d169d15e0d9afe9fb996`.
+Ported from bpi-go commit `471c3b2b7a8207d51024f15f7117b92f6ebad2aa`.
 
 | Contract | TypeScript method | Parameters | Response |
 | --- | --- | --- | --- |
@@ -137,7 +137,10 @@ Ported from bpi-go commit `add0ff775ef4caff2203d169d15e0d9afe9fb996`.
 | manga.point_products | client.manga.pointProducts | none | []manga.Product |
 | manga.season_info | client.manga.seasonInfo | none | manga.SeasonInfo |
 | manga.user_point | client.manga.userPoint | none | manga.UserPoint |
+| message.private.send | client.message.send | SendParams | message.SendResult |
 | message.reply_feed | client.message.replyFeed | ReplyFeedParams | message.ReplyFeed |
+| message.session_messages | client.message.sessionMessages | SessionMessagesParams | message.SessionMessages |
+| message.sessions | client.message.sessions | SessionsParams | message.Sessions |
 | message.single_unread | client.message.singleUnread | SingleUnreadParams | message.SingleUnread |
 | message.unread_count | client.message.unreadCount | UnreadCountParams | message.UnreadCount |
 | misc.b23tv.short_link | client.misc.shortLink | ShortLinkParams | misc.ShortLink |
